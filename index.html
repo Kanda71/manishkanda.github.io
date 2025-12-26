@@ -8,15 +8,12 @@
     <style>
         :root {
             /* --- The Palette --- */
-            --bg-color: #FDFCF8;        /* Warm Ivory Background */
-            --text-main: #2D334A;       /* Deep Charcoal (Softer than black) */
-            --text-muted: #7C809B;      /* Cool Gray for secondary text */
-            
-            /* Accents */
-            --primary: #0F4C5C;         /* Deep Teal - Professional & Calm */
-            --secondary: #E36414;       /* Terracotta - Warmth & Energy */
-            --highlight: #FFF0E5;       /* Very light orange/pink for button backgrounds */
-            
+            --bg-color: #FDFCF8;
+            --text-main: #2D334A;
+            --text-muted: #7C809B;
+            --primary: #0F4C5C;         /* Deep Teal */
+            --secondary: #E36414;       /* Terracotta */
+            --highlight: #FFF0E5;       
             --border-color: #EAEAEA;
         }
 
@@ -33,7 +30,7 @@
         }
 
         .container { 
-            max-width: 800px; 
+            max-width: 900px; /* Slightly wider to fit side-by-side layout */
             margin: 0 auto; 
             padding: 20px; 
             width: 100%;
@@ -47,12 +44,13 @@
             justify-content: space-between;
             align-items: center;
             font-family: 'Inter', sans-serif;
+            margin-bottom: 60px;
         }
         
         .logo { 
             font-weight: 700; 
             font-size: 1.1rem; 
-            color: var(--primary); /* Teal Logo */
+            color: var(--primary);
             text-transform: uppercase; 
             letter-spacing: 1px;
             text-decoration: none;
@@ -70,153 +68,155 @@
             position: relative;
         }
         
-        /* Cool underline hover effect */
         .nav-links a::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 2px;
-            background: var(--secondary);
-            transition: width .3s;
-            margin-top: 4px;
+            content: ''; display: block; width: 0; height: 2px;
+            background: var(--secondary); transition: width .3s; margin-top: 4px;
         }
-        
         .nav-links a:hover { color: var(--text-main); }
         .nav-links a:hover::after { width: 100%; }
 
-        /* --- Hero / Profile Section --- */
+        /* --- NEW HERO SECTION DESIGN --- */
         .hero {
-            text-align: center;
-            max-width: 650px;
-            margin: 70px auto 50px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr; /* Text takes more space than image */
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 80px;
         }
-        
-        .profile-img {
-            width: 160px; height: 160px; 
-            border-radius: 50%;
-            object-fit: cover; 
-            margin-bottom: 25px;
-            /* Double border for a premium look */
-            border: 4px solid white;
-            box-shadow: 0 0 0 1px var(--border-color), 0 10px 30px rgba(15, 76, 92, 0.15);
+
+        .hero-text {
+            text-align: left;
         }
-        
+
         .hero h1 { 
-            font-size: 2.2rem; 
-            margin: 0 0 15px 0; 
+            font-size: 2.8rem; 
+            margin: 0 0 20px 0; 
             color: var(--primary); 
             font-weight: 700;
+            line-height: 1.1;
         }
         
-        .hero p { font-size: 1.15rem; color: var(--text-main); opacity: 0.85; }
+        .hero p { 
+            font-size: 1.15rem; 
+            color: var(--text-main); 
+            opacity: 0.9; 
+            margin-bottom: 30px;
+        }
+
+        /* The Image Wrapper creates the "Offset" effect */
+        .image-wrapper {
+            position: relative;
+        }
+
+        /* The solid teal block behind the image */
+        .image-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            right: -15px;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary); /* Teal Background Block */
+            border-radius: 8px;
+            z-index: -1; /* Puts it behind the image */
+        }
+
+        .profile-img {
+            width: 100%; 
+            aspect-ratio: 3/4; /* Portrait Rectangle shape */
+            border-radius: 8px;
+            object-fit: cover; 
+            display: block;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        /* Social Icons styled as text buttons */
+        .hero-links {
+            display: flex;
+            gap: 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .hero-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .hero-links a:hover { text-decoration: underline; }
+
 
         /* --- The Divider --- */
         .section-divider {
             border: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--secondary), transparent); /* Gradient divider */
-            width: 150px;
+            height: 1px;
+            background: var(--border-color);
+            width: 100%;
             margin: 60px auto;
-            opacity: 0.5;
         }
 
         /* --- Journal Section --- */
-        .journal-section { margin-top: 20px; }
-
         .journal-heading {
             font-family: 'Sacramento', cursive;
             font-size: 4.5rem;
             text-align: center;
             margin-bottom: 70px;
-            color: var(--primary); /* Teal Heading */
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.05); /* Subtle depth */
+            color: var(--primary);
             font-weight: 400;
         }
 
         /* --- Blog Posts --- */
-        .blog-post {
-            margin-bottom: 90px;
-        }
-
-        .blog-post h2 {
-            font-size: 1.9rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-        
+        .blog-post { margin-bottom: 90px; }
+        .blog-post h2 { font-size: 1.9rem; margin-bottom: 15px; font-weight: 700; }
         .blog-post h2 a {
-            text-decoration: none;
-            color: var(--text-main);
-            transition: color 0.2s;
+            text-decoration: none; color: var(--text-main); transition: color 0.2s;
             background-image: linear-gradient(to right, var(--secondary) 0%, var(--secondary) 100%);
-            background-size: 0% 2px;
-            background-repeat: no-repeat;
-            background-position: left bottom 2px;
+            background-size: 0% 2px; background-repeat: no-repeat; background-position: left bottom 2px;
             transition: background-size 0.3s;
         }
-        .blog-post h2 a:hover { 
-            background-size: 100% 2px; /* Underline grows on hover */
-        }
+        .blog-post h2 a:hover { background-size: 100% 2px; }
 
         .image-container {
-            width: 100%;
-            height: 420px;
-            overflow: hidden;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08); /* Soft shadow */
+            width: 100%; height: 420px; overflow: hidden; border-radius: 8px;
+            margin-bottom: 25px; box-shadow: 0 15px 30px rgba(0,0,0,0.08);
         }
+        .blog-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .blog-post:hover .blog-image { transform: scale(1.03); }
+        .post-excerpt { font-size: 1.05rem; color: var(--text-main); opacity: 0.85; margin-bottom: 25px; }
 
-        .blog-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .blog-post:hover .blog-image {
-            transform: scale(1.03); /* Subtle zoom on hover */
-        }
-
-        .post-excerpt {
-            font-size: 1.05rem;
-            color: var(--text-main);
-            opacity: 0.85;
-            margin-bottom: 25px;
-        }
-
-        /* "Button" Style Link */
         .read-more {
-            display: inline-block;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            color: var(--secondary);
-            background-color: var(--highlight);
-            padding: 10px 20px;
-            border-radius: 30px; /* Pill shape */
-            text-decoration: none;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
+            display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.8rem;
+            color: var(--secondary); background-color: var(--highlight);
+            padding: 10px 20px; border-radius: 30px; text-decoration: none;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
         }
-
         .read-more:hover {
-            background-color: var(--secondary);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(227, 100, 20, 0.3);
+            background-color: var(--secondary); color: white;
+            transform: translateY(-2px); box-shadow: 0 5px 15px rgba(227, 100, 20, 0.3);
         }
 
         footer {
-            padding: 60px 0; 
-            text-align: center; 
-            font-size: 0.85rem; 
-            color: var(--text-muted); 
-            font-family: 'Inter', sans-serif;
-            border-top: 1px solid var(--border-color);
-            margin-top: 40px;
+            padding: 60px 0; text-align: center; font-size: 0.85rem; color: var(--text-muted);
+            font-family: 'Inter', sans-serif; border-top: 1px solid var(--border-color); margin-top: 40px;
+        }
+
+        /* Mobile Adjustments */
+        @media(max-width: 768px){
+            .hero {
+                grid-template-columns: 1fr; /* Stack vertically on mobile */
+                text-align: center;
+                gap: 30px;
+            }
+            .hero-text { text-align: center; order: 2; } /* Text below image on mobile */
+            .image-wrapper { 
+                order: 1; 
+                width: 70%; 
+                margin: 0 auto; 
+            }
+            .hero-links { justify-content: center; }
+            .image-wrapper::before { top: 10px; right: -10px; }
         }
     </style>
 </head>
@@ -233,12 +233,21 @@
     </nav>
 
     <section class="hero">
-        <img src="me.jpg" alt="Manish Kanda" class="profile-img">
-        <h1>Hi, I’m Manish.</h1>
-        <p>
-            I am a physicist and researcher interested in condensed matter and electronics. 
-            This is my digital notebook for essays, lab notes, and thoughts on academia.
-        </p>
+        <div class="hero-text">
+            <h1>Hi, I’m Manish Kanda.</h1>
+            <p>
+                 
+                This is my digital notebook for essays, lab notes, and thoughts on navigating the complexities of academia.
+            </p>
+            <div class="hero-links">
+                <a href="mailto:email@example.com">Email Me →</a>
+                <a href="#">LinkedIn →</a>
+            </div>
+        </div>
+        
+        <div class="image-wrapper">
+            <img src="me.jpg" alt="Manish Kanda" class="profile-img">
+        </div>
     </section>
 
     <hr class="section-divider">
@@ -267,18 +276,6 @@
             </p>
             <a href="#" class="read-more">Read Entry</a>
         </article>
-
-        <article class="blog-post">
-            <h2><a href="#">Digital Logic & Design</a></h2>
-            <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1555664424-778a69022365?auto=format&fit=crop&w=800&q=80" alt="Circuit Board" class="blog-image">
-            </div>
-            <p class="post-excerpt">
-                Exploring the 74HC595 shift register. While it's a basic component, understanding its timing diagrams perfectly is crucial for complex circuit design.
-            </p>
-            <a href="#" class="read-more">Read Entry</a>
-        </article>
-
     </div>
 
     <footer>
