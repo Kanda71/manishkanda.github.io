@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manish Kanda | Journal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* SAME COLOR PALETTE AS HOME */
+        :root {
+            --bg-color: #FAFAFA;       
+            --card-bg: #FFFFFF;        
+            --text-color: #222222;     
+            --headline-color: #000000; 
+            --accent-color: #2A6F9E;   
+            --border-color: #E2E2E2;   
+            --secondary-text: #888888; 
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+        /* Navigation */
+        nav {
+            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 60px;
+        }
+        .logo { font-weight: 700; font-size: 1.2rem; color: var(--headline-color); text-decoration: none; }
+        
+        .nav-links a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-links a:hover { color: var(--accent-color); }
+        .nav-links svg { width: 18px; height: 18px; stroke: currentColor; }
+
+        /* JOURNAL ENTRIES */
+        .page-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .page-title h1 { margin: 0; font-size: 2.5rem; }
+        .page-title p { color: var(--secondary-text); font-style: italic; margin-top: 10px; }
+
+        .journal-entry {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            margin-bottom: 60px; /* Space between entries */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        /* 1. Date */
+        .entry-date {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* 2. Heading */
+        .entry-title {
+            font-size: 2rem;
+            margin: 0 0 25px 0;
+            line-height: 1.2;
+        }
+
+        /* 3. Image */
+        .entry-image {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* 4. Description */
+        .entry-body {
+            font-size: 1.05rem;
+            color: #444;
+        }
+
+        /* Mobile Fix */
+        @media(max-width: 768px){
+            .nav-links { display: none; }
+            .journal-entry { padding: 25px; }
+            .entry-title { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="index.html" class="logo">Manish Kanda</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="physics.html">Physics</a>
+            <a href="journal.html" style="color: var(--accent-color);">Journal</a>
+            <a href="gallery.html">Gallery</a>
+        </div>
+    </nav>
+
+    <div class="page-title">
+        <h1>Personal Journal</h1>
+        <p>Reflections on teaching, research, and life.</p>
+    </div>
+
+    <article class="journal-entry">
+        <span class="entry-date">October 15, 2025</span>
+        <h2 class="entry-title">The Art of Scientific Explanation</h2>
+        
+        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1000&q=80" alt="Teaching Physics" class="entry-image">
+        
+        <div class="entry-body">
+            <p>
+                Why do students struggle with electromagnetism? I've been reflecting on teaching physics with clarity. Using analogies is helpful, but visual intuition is paramount. In my recent demo class, I found that starting with the phenomena before the math increased engagement significantly. We often get lost in the equations and forget to show the beauty of the physical world first.
+            </p>
+        </div>
+    </article>
+
+    <article class="journal-entry">
+        <span class="entry-date">September 22, 2025</span>
+        <h2 class="entry-title">Digital Minimalism in Science</h2>
+        
+        <img src="https://images.unsplash.com/photo-1499750310159-5b600aaf0327?w=1000&q=80" alt="Workspace" class="entry-image">
+        
+        <div class="entry-body">
+            <p>
+                In an era of constant notifications, I explore why clean interfaces and distraction-free writing environments are essential for the deep thinking required in theoretical physics. I have recently stripped my digital workspace down to the bare essentials: a text editor, a terminal, and a PDF reader. The clarity of mind that follows is astonishing.
+            </p>
+        </div>
+    </article>
+
+    <article class="journal-entry">
+        <span class="entry-date">August 10, 2025</span>
+        <h2 class="entry-title">Late Nights in the Lab</h2>
+        
+        <img src="https://images.unsplash.com/photo-1581093588402-4231537f059d?w=1000&q=80" alt="Laboratory" class="entry-image">
+        
+        <div class="entry-body">
+            <p>
+                There is a specific kind of silence that exists in a physics lab at 2 AM. The hum of the cooling fans and the faint glow of the oscilloscope are the only company. Tonight, we finally stabilized the laser output for the diffraction experiment. Progress is slow, but these small victories keep the passion alive.
+            </p>
+        </div>
+    </article>
+
+    <footer>
+        © 2025 Manish Kanda.
+    </footer>
+</div>
+
+</body>
+</html>

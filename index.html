@@ -3,106 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manish Kanda | Academic Portfolio</title>
-    <meta name="description" content="Academic portfolio of Manish Kanda — Physics, Research, Essays, and Visual Work.">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Manish Kanda | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color:#fcfcfc;
-            --text-color:#222;
-            --accent-color:#d13a3a;
-            --light-gray:#e0e0e0;
-        }
-        body{
-            font-family:'Merriweather',serif;
-            background:var(--bg-color);
-            color:var(--text-color);
-            margin:0;
-            line-height:1.8;
-            -webkit-font-smoothing:antialiased;
-        }
-        h1,h2,h3{font-weight:700;letter-spacing:-.02em}
-        h2{
-            font-size:2rem;
-            border-bottom:1px solid var(--text-color);
-            padding-bottom:10px;
-            margin-top:60px;
-        }
-        a{color:var(--text-color);text-decoration:none;transition:.3s}
-        a:hover{color:var(--accent-color)}
-        .container{max-width:800px;margin:0 auto;padding:20px}
-
-        nav{
-            padding:30px 0;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            font-family:'Inter',sans-serif;
-            font-size:.9rem;
-            border-bottom:1px solid var(--light-gray);
-        }
-        .nav-links a{
-            margin-left:20px;
-            text-transform:uppercase;
-            letter-spacing:1px;
-            font-weight:600;
+            /* --- The Palette --- */
+            --bg-color: #FDFCF8;        /* Warm Ivory Background */
+            --text-main: #2D334A;       /* Deep Charcoal (Softer than black) */
+            --text-muted: #7C809B;      /* Cool Gray for secondary text */
+            
+            /* Accents */
+            --primary: #0F4C5C;         /* Deep Teal - Professional & Calm */
+            --secondary: #E36414;       /* Terracotta - Warmth & Energy */
+            --highlight: #FFF0E5;       /* Very light orange/pink for button backgrounds */
+            
+            --border-color: #EAEAEA;
         }
 
-        .hero{
-            display:flex;
-            align-items:center;
-            gap:40px;
-            padding:80px 0;
-        }
-        .profile-img{
-            width:150px;height:150px;border-radius:50%;
-            object-fit:cover;background:#ddd;flex-shrink:0;
-        }
-        .bio{font-size:1.1rem;color:#444}
-        .bio h1{font-size:2.5rem;margin-top:0}
-
-        .post-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-            gap:30px;margin-top:20px;
-        }
-        .card{
-            background:#fff;
-            border:1px solid var(--light-gray);
-            padding:20px;
-            transition:.2s;
-        }
-        .card:hover{transform:translateY(-5px);border-color:var(--text-color)}
-        .card-tag{
-            font-family:'Inter',sans-serif;
-            font-size:.75rem;
-            text-transform:uppercase;
-            color:var(--accent-color);
-            font-weight:bold;
-            display:block;margin-bottom:10px;
-        }
-        .card h3{font-size:1.2rem;margin:0 0 10px}
-        .card p{font-size:.95rem;color:#666;margin:0}
-
-        .gallery-grid{
-            display:grid;
-            grid-template-columns:repeat(3,1fr);
-            gap:15px;
-        }
-        .gallery-item{
-            aspect-ratio:1;
-            background:#eee;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            color:#aaa;
-            font-family:'Inter',sans-serif;
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        @media(max-width:600px){
-            .hero{flex-direction:column;text-align:center}
-            .nav-links{display:none}
-            .gallery-grid{grid-template-columns:repeat(2,1fr)}
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            width: 100%;
+            flex: 1; 
+        }
+
+        /* --- Navigation --- */
+        nav {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .logo { 
+            font-weight: 700; 
+            font-size: 1.1rem; 
+            color: var(--primary); /* Teal Logo */
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+        
+        .nav-links a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: 0.3s;
+            position: relative;
+        }
+        
+        /* Cool underline hover effect */
+        .nav-links a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width .3s;
+            margin-top: 4px;
+        }
+        
+        .nav-links a:hover { color: var(--text-main); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* --- Hero / Profile Section --- */
+        .hero {
+            text-align: center;
+            max-width: 650px;
+            margin: 70px auto 50px;
+        }
+        
+        .profile-img {
+            width: 160px; height: 160px; 
+            border-radius: 50%;
+            object-fit: cover; 
+            margin-bottom: 25px;
+            /* Double border for a premium look */
+            border: 4px solid white;
+            box-shadow: 0 0 0 1px var(--border-color), 0 10px 30px rgba(15, 76, 92, 0.15);
+        }
+        
+        .hero h1 { 
+            font-size: 2.2rem; 
+            margin: 0 0 15px 0; 
+            color: var(--primary); 
+            font-weight: 700;
+        }
+        
+        .hero p { font-size: 1.15rem; color: var(--text-main); opacity: 0.85; }
+
+        /* --- The Divider --- */
+        .section-divider {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent); /* Gradient divider */
+            width: 150px;
+            margin: 60px auto;
+            opacity: 0.5;
+        }
+
+        /* --- Journal Section --- */
+        .journal-section { margin-top: 20px; }
+
+        .journal-heading {
+            font-family: 'Sacramento', cursive;
+            font-size: 4.5rem;
+            text-align: center;
+            margin-bottom: 70px;
+            color: var(--primary); /* Teal Heading */
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.05); /* Subtle depth */
+            font-weight: 400;
+        }
+
+        /* --- Blog Posts --- */
+        .blog-post {
+            margin-bottom: 90px;
+        }
+
+        .blog-post h2 {
+            font-size: 1.9rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .blog-post h2 a {
+            text-decoration: none;
+            color: var(--text-main);
+            transition: color 0.2s;
+            background-image: linear-gradient(to right, var(--secondary) 0%, var(--secondary) 100%);
+            background-size: 0% 2px;
+            background-repeat: no-repeat;
+            background-position: left bottom 2px;
+            transition: background-size 0.3s;
+        }
+        .blog-post h2 a:hover { 
+            background-size: 100% 2px; /* Underline grows on hover */
+        }
+
+        .image-container {
+            width: 100%;
+            height: 420px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08); /* Soft shadow */
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-post:hover .blog-image {
+            transform: scale(1.03); /* Subtle zoom on hover */
+        }
+
+        .post-excerpt {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            opacity: 0.85;
+            margin-bottom: 25px;
+        }
+
+        /* "Button" Style Link */
+        .read-more {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--secondary);
+            background-color: var(--highlight);
+            padding: 10px 20px;
+            border-radius: 30px; /* Pill shape */
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(227, 100, 20, 0.3);
+        }
+
+        footer {
+            padding: 60px 0; 
+            text-align: center; 
+            font-size: 0.85rem; 
+            color: var(--text-muted); 
+            font-family: 'Inter', sans-serif;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
         }
     </style>
 </head>
@@ -110,90 +224,65 @@
 
 <div class="container">
     <nav>
-        <div style="font-weight:700;font-size:1.2rem;">Manish Kanda</div>
+        <a href="#" class="logo">Manish Kanda</a>
         <div class="nav-links">
-            <a href="#physics">Physics</a>
-            <a href="#research">Research</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#blog">Journal</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="physics.html">Physics</a>
         </div>
     </nav>
 
     <section class="hero">
-        <img src=me.jpg alt="Profile Photo" class="profile-img">
-        <div class="bio">
-            <h1>Hello, I’m Manish.</h1>
-            <p>
-                A digital notebook for my essays, research notes, and thoughts on navigating academia.  write essays at the intersection of science, philosophy, and daily life.
-            </p>
-        </div>
-    </section>
-
-    <section id="physics">
-        <h2>Physics</h2>
-        <div class="post-grid">
-            <article class="card">
-                <span class="card-tag">Quantum</span>
-                <h3>Foundations of Quantum Mechanics</h3>
-                <p>Conceptual notes on wave–particle duality and operators.</p>
-            </article>
-            <article class="card">
-                <span class="card-tag">Electronics</span>
-                <h3>The 555 Timer</h3>
-                <p>Astable and monostable configurations with lab insights.</p>
-            </article>
-        </div>
-    </section>
-
-    <section id="research">
-        <h2>Research</h2>
-        <div class="post-grid">
-            <article class="card">
-                <span class="card-tag">Condensed Matter</span>
-                <h3>Halide Perovskites</h3>
-                <p>Excitonic behavior in CsPbBr₃ and related materials.</p>
-            </article>
-            <article class="card">
-                <span class="card-tag">Interdisciplinary</span>
-                <h3>Himalayan Vulnerability</h3>
-                <p>Socio-natural disaster analysis in the Mandi region.</p>
-            </article>
-        </div>
-    </section>
-
-    <section id="gallery">
-        <h2>Gallery</h2>
-        <p style="margin-bottom:20px;font-style:italic;color:#666;">
-            Figures, circuits, and experimental visualizations.
+        <img src="me.jpg" alt="Manish Kanda" class="profile-img">
+        <h1>Hi, I’m Manish.</h1>
+        <p>
+            I am a physicist and researcher interested in condensed matter and electronics. 
+            This is my digital notebook for essays, lab notes, and thoughts on academia.
         </p>
-        <div class="gallery-grid">
-            <div class="gallery-item">Figure 1</div>
-            <div class="gallery-item">Figure 2</div>
-            <div class="gallery-item">Figure 3</div>
-            <div class="gallery-item">Figure 4</div>
-            <div class="gallery-item">Figure 5</div>
-            <div class="gallery-item">Figure 6</div>
-        </div>
     </section>
 
-    <section id="blog">
-        <h2>Journal</h2>
-        <div class="post-grid">
-            <article class="card">
-                <span class="card-tag">Teaching</span>
-                <h3>The Art of Scientific Explanation</h3>
-                <p>Reflections on teaching physics with clarity.</p>
-            </article>
-            <article class="card">
-                <span class="card-tag">Essays</span>
-                <h3>Digital Minimalism</h3>
-                <p>Why clean interfaces matter for deep thinking.</p>
-            </article>
-        </div>
-    </section>
+    <hr class="section-divider">
 
-    <footer style="margin-top:80px;padding:40px 0;border-top:1px solid #e0e0e0;text-align:center;font-family:'Inter',sans-serif;font-size:.8rem;color:#888;">
-        © 2025 Manish Kanda. Designed with simplicity.
+    <div class="journal-section">
+        <h2 class="journal-heading">Journal</h2>
+
+        <article class="blog-post">
+            <h2><a href="#">The Silence of the Lab at Midnight</a></h2>
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80" alt="Lab equipment" class="blog-image">
+            </div>
+            <p class="post-excerpt">
+                There is a specific kind of quiet that falls over the physics department during the holidays. The hum of the cryostat becomes the only reference for time as I analyze the latest instability data...
+            </p>
+            <a href="#" class="read-more">Read Entry</a>
+        </article>
+
+        <article class="blog-post">
+            <h2><a href="#">On Halide Perovskites</a></h2>
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=800&q=80" alt="Crystal structure abstract" class="blog-image">
+            </div>
+            <p class="post-excerpt">
+                We often look for stability in materials, but sometimes instability is where the interesting physics hides. Here are my notes on the quasiparticle analysis and what it means for future electronics.
+            </p>
+            <a href="#" class="read-more">Read Entry</a>
+        </article>
+
+        <article class="blog-post">
+            <h2><a href="#">Digital Logic & Design</a></h2>
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1555664424-778a69022365?auto=format&fit=crop&w=800&q=80" alt="Circuit Board" class="blog-image">
+            </div>
+            <p class="post-excerpt">
+                Exploring the 74HC595 shift register. While it's a basic component, understanding its timing diagrams perfectly is crucial for complex circuit design.
+            </p>
+            <a href="#" class="read-more">Read Entry</a>
+        </article>
+
+    </div>
+
+    <footer>
+        © 2025 Manish Kanda.
     </footer>
 </div>
 

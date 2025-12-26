@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manish Kanda | Photo Journal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color:#fcfcfc; --text-color:#222; --accent-color:#d13a3a; --light-gray:#e0e0e0; }
+        body{ font-family:'Merriweather',serif; background:var(--bg-color); color:var(--text-color); margin:0; line-height:1.8; }
+        
+        /* Layout Container */
+        .container{ max-width:800px; margin:0 auto; padding:20px; }
+        
+        /* Navigation */
+        nav{ padding:30px 0; border-bottom:1px solid var(--light-gray); margin-bottom: 60px; display:flex; justify-content:space-between; }
+        .nav-links a{ text-decoration:none; color:var(--text-color); font-family:'Inter',sans-serif; font-weight:600; text-transform:uppercase; font-size: 0.9rem;}
+        .nav-links a:hover{ color:var(--accent-color); }
+
+        /* Photo Stream Styles */
+        .photo-entry {
+            margin-bottom: 80px; /* Space between posts */
+            padding-bottom: 40px;
+            border-bottom: 1px solid #eee; /* Light line separator */
+        }
+        
+        /* Removes the line from the very last item */
+        .photo-entry:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .photo-entry img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            display: block;
+            margin-bottom: 25px; /* Space between image and text */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .entry-text {
+            max-width: 90%; /* Keeps text slightly narrower than image for readability */
+        }
+
+        .photo-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: block;
+            color: var(--text-color);
+        }
+
+        .photo-caption {
+            font-size: 1.05rem;
+            color: #444;
+            line-height: 1.7;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <div style="font-weight:700;font-size:1.2rem;">Manish Kanda</div>
+        <div class="nav-links">
+            <a href="index.html">← Back to Home</a>
+        </div>
+    </nav>
+
+    <div style="margin-bottom: 60px; text-align: center;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Visual Notes</h1>
+        <p style="color:#666; font-style: italic;">A collection of experiments, field work, and observations.</p>
+    </div>
+
+    <div class="photo-entry">
+        <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?w=1000&q=80" alt="Lab Equipment">
+        
+        <div class="entry-text">
+            <span class="photo-title">Laboratory Setup: Optics Bench</span>
+            <p class="photo-caption">
+                This was the setup for the laser diffraction experiment. We used a standard He-Ne laser to observe the interference patterns created by the single slit. Aligning the mirrors took nearly two hours, but the resulting fringe definition was worth the effort.
+            </p>
+        </div>
+    </div>
+
+    <div class="photo-entry">
+        <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=1000&q=80" alt="Physics Notebook">
+        <div class="entry-text">
+            <span class="photo-title">Deriving the Hamiltonian</span>
+            <p class="photo-caption">
+                Snapshot of my notebook during a late-night study session. I was trying to work through the perturbations for the quantum harmonic oscillator. There is something satisfying about writing these equations out by hand rather than typing them in LaTeX.
+            </p>
+        </div>
+    </div>
+
+    <div class="photo-entry">
+        <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?w=1000&q=80" alt="Circuit Board">
+        <div class="entry-text">
+            <span class="photo-title">Circuit Prototyping</span>
+            <p class="photo-caption">
+                A close-up of the PCB we designed for the signal processing unit. You can see the traces connecting the op-amps to the filter capacitors. We ran into some noise issues on the ground plane, which we had to debug using an oscilloscope.
+            </p>
+        </div>
+    </div>
+
+    <div class="photo-entry">
+        <img src="https://images.unsplash.com/photo-1503221043305-f7498f8b7888?w=1000&q=80" alt="Field Work">
+        <div class="entry-text">
+            <span class="photo-title">Field Work in the Himalayas</span>
+            <p class="photo-caption">
+                Taken during our survey of the Mandi region. We were collecting soil samples to analyze the stability of the slopes. The terrain here is incredibly rugged, making data collection physically demanding but visually stunning.
+            </p>
+        </div>
+    </div>
+
+    <footer style="margin-top:50px; text-align:center; font-size:0.8rem; color:#888;">
+        © 2025 Manish Kanda
+    </footer>
+</div>
+</body>
+</html>
