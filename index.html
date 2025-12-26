@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manish Kanda | Academic Portfolio</title>
+    <meta name="description" content="Academic portfolio of Manish Kanda — Physics, Research, Essays, and Visual Work.">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color:#fcfcfc;
+            --text-color:#222;
+            --accent-color:#d13a3a;
+            --light-gray:#e0e0e0;
+        }
+        body{
+            font-family:'Merriweather',serif;
+            background:var(--bg-color);
+            color:var(--text-color);
+            margin:0;
+            line-height:1.8;
+            -webkit-font-smoothing:antialiased;
+        }
+        h1,h2,h3{font-weight:700;letter-spacing:-.02em}
+        h2{
+            font-size:2rem;
+            border-bottom:1px solid var(--text-color);
+            padding-bottom:10px;
+            margin-top:60px;
+        }
+        a{color:var(--text-color);text-decoration:none;transition:.3s}
+        a:hover{color:var(--accent-color)}
+        .container{max-width:800px;margin:0 auto;padding:20px}
+
+        nav{
+            padding:30px 0;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            font-family:'Inter',sans-serif;
+            font-size:.9rem;
+            border-bottom:1px solid var(--light-gray);
+        }
+        .nav-links a{
+            margin-left:20px;
+            text-transform:uppercase;
+            letter-spacing:1px;
+            font-weight:600;
+        }
+
+        .hero{
+            display:flex;
+            align-items:center;
+            gap:40px;
+            padding:80px 0;
+        }
+        .profile-img{
+            width:150px;height:150px;border-radius:50%;
+            object-fit:cover;background:#ddd;flex-shrink:0;
+        }
+        .bio{font-size:1.1rem;color:#444}
+        .bio h1{font-size:2.5rem;margin-top:0}
+
+        .post-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+            gap:30px;margin-top:20px;
+        }
+        .card{
+            background:#fff;
+            border:1px solid var(--light-gray);
+            padding:20px;
+            transition:.2s;
+        }
+        .card:hover{transform:translateY(-5px);border-color:var(--text-color)}
+        .card-tag{
+            font-family:'Inter',sans-serif;
+            font-size:.75rem;
+            text-transform:uppercase;
+            color:var(--accent-color);
+            font-weight:bold;
+            display:block;margin-bottom:10px;
+        }
+        .card h3{font-size:1.2rem;margin:0 0 10px}
+        .card p{font-size:.95rem;color:#666;margin:0}
+
+        .gallery-grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:15px;
+        }
+        .gallery-item{
+            aspect-ratio:1;
+            background:#eee;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#aaa;
+            font-family:'Inter',sans-serif;
+        }
+
+        @media(max-width:600px){
+            .hero{flex-direction:column;text-align:center}
+            .nav-links{display:none}
+            .gallery-grid{grid-template-columns:repeat(2,1fr)}
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <div style="font-weight:700;font-size:1.2rem;">Manish Kanda</div>
+        <div class="nav-links">
+            <a href="#physics">Physics</a>
+            <a href="#research">Research</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#blog">Journal</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <img src=e.jpg alt="Profile Photo" class="profile-img">
+        <div class="bio">
+            <h1>Hello, I’m Manish.</h1>
+            <p>
+                M.Sc. Physics student at IIT Mandi. I work across condensed matter physics,
+                electronics, and scientific communication. This site is my academic notebook.
+            </p>
+        </div>
+    </section>
+
+    <section id="physics">
+        <h2>Physics</h2>
+        <div class="post-grid">
+            <article class="card">
+                <span class="card-tag">Quantum</span>
+                <h3>Foundations of Quantum Mechanics</h3>
+                <p>Conceptual notes on wave–particle duality and operators.</p>
+            </article>
+            <article class="card">
+                <span class="card-tag">Electronics</span>
+                <h3>The 555 Timer</h3>
+                <p>Astable and monostable configurations with lab insights.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="research">
+        <h2>Research</h2>
+        <div class="post-grid">
+            <article class="card">
+                <span class="card-tag">Condensed Matter</span>
+                <h3>Halide Perovskites</h3>
+                <p>Excitonic behavior in CsPbBr₃ and related materials.</p>
+            </article>
+            <article class="card">
+                <span class="card-tag">Interdisciplinary</span>
+                <h3>Himalayan Vulnerability</h3>
+                <p>Socio-natural disaster analysis in the Mandi region.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <p style="margin-bottom:20px;font-style:italic;color:#666;">
+            Figures, circuits, and experimental visualizations.
+        </p>
+        <div class="gallery-grid">
+            <div class="gallery-item">Figure 1</div>
+            <div class="gallery-item">Figure 2</div>
+            <div class="gallery-item">Figure 3</div>
+            <div class="gallery-item">Figure 4</div>
+            <div class="gallery-item">Figure 5</div>
+            <div class="gallery-item">Figure 6</div>
+        </div>
+    </section>
+
+    <section id="blog">
+        <h2>Journal</h2>
+        <div class="post-grid">
+            <article class="card">
+                <span class="card-tag">Teaching</span>
+                <h3>The Art of Scientific Explanation</h3>
+                <p>Reflections on teaching physics with clarity.</p>
+            </article>
+            <article class="card">
+                <span class="card-tag">Essays</span>
+                <h3>Digital Minimalism</h3>
+                <p>Why clean interfaces matter for deep thinking.</p>
+            </article>
+        </div>
+    </section>
+
+    <footer style="margin-top:80px;padding:40px 0;border-top:1px solid #e0e0e0;text-align:center;font-family:'Inter',sans-serif;font-size:.8rem;color:#888;">
+        © 2025 Manish Kanda. Designed with simplicity.
+    </footer>
+</div>
+
+</body>
+</html>
