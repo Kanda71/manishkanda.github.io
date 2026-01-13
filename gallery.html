@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manish Kanda | Visual Notes</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
             /* --- Brand Palette --- */
@@ -17,6 +21,8 @@
             --border-color: #EAEAEA;
         }
 
+        * { box-sizing: border-box; }
+
         body {
             font-family: 'Merriweather', serif;
             background-color: var(--bg-color);
@@ -24,51 +30,95 @@
             margin: 0;
             line-height: 1.8;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .container { 
-            max-width: 800px; 
+            max-width: 900px; 
             margin: 0 auto; 
             padding: 20px; 
+            width: 100%;
+            flex: 1;
         }
 
-        /* --- Navigation --- */
+        /* --- Navigation (Side Drawer Style) --- */
         nav {
             padding: 40px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-family: 'Inter', sans-serif;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1000;
         }
         
         .logo { 
-            font-weight: 700; font-size: 1.1rem; color: var(--primary);
-            text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
+            font-weight: 700; 
+            font-size: 1.1rem; 
+            color: var(--primary);
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            text-decoration: none;
+            z-index: 1001;
         }
+        
+        /* Hamburger Icon */
+        .hamburger {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+            z-index: 1002;
+            transition: transform 0.3s ease;
+        }
+        
+        .hamburger:hover { color: var(--secondary); }
+
+        /* Sliding Drawer Menu */
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -300px; /* Hidden off-screen */
+            height: 100vh;
+            width: 250px;
+            background-color: var(--bg-color);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: right 0.4s ease; /* Slide animation */
+            z-index: 1001;
+        }
+
+        .nav-links.active { right: 0; } /* Slide in */
         
         .nav-links a {
-            margin-left: 30px; text-decoration: none; color: var(--text-muted);
-            text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem;
-            font-weight: 600; transition: 0.3s; position: relative;
+            margin: 20px 0;
+            text-decoration: none;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: 0.3s;
         }
         
-        .nav-links a::after {
-            content: ''; display: block; width: 0; height: 2px;
-            background: var(--secondary); transition: width .3s; margin-top: 4px;
-        }
         .nav-links a:hover { color: var(--text-main); }
-        .nav-links a:hover::after { width: 100%; }
 
         /* --- Header Section --- */
         .page-header {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
+            padding: 0 20px;
         }
 
         .page-header h1 {
             font-family: 'Sacramento', cursive;
-            font-size: 4.5rem;
+            font-size: 4rem;
             color: var(--primary);
             margin: 0;
             font-weight: 400;
@@ -77,163 +127,207 @@
         .page-header p {
             font-family: 'Inter', sans-serif;
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-top: 10px;
             letter-spacing: 0.5px;
         }
 
-        /* --- Photo Entry Card Design --- */
+        /* --- Gallery Grid (Masonry) --- */
+        .gallery-grid {
+            column-count: 2; 
+            column-gap: 30px;
+            margin-bottom: 60px;
+        }
+
         .photo-entry {
             background: var(--card-bg);
-            margin-bottom: 90px;
+            margin-bottom: 30px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.06); 
+            box-shadow: 0 5px 25px rgba(0,0,0,0.04); 
             border: 1px solid rgba(0,0,0,0.03);
             transition: transform 0.3s ease;
+            break-inside: avoid; 
+            width: 100%;
+            display: inline-block; 
         }
 
         .photo-entry:hover {
             transform: translateY(-5px); 
-            box-shadow: 0 15px 50px rgba(15, 76, 92, 0.1); 
         }
 
-        /* --- UPDATED IMAGE CSS TO FIX CROP --- */
         .image-wrapper {
             width: 100%;
-            height: auto; /* Changed from 450px to auto */
-            overflow: hidden;
-            position: relative;
-            background-color: #f0f0f0; 
+            line-height: 0;
         }
 
         .photo-entry img {
             width: 100%;
-            height: auto; /* Changed from 100% to auto */
-            display: block; /* Removes small gap at bottom */
-            transition: transform 0.6s ease;
-        }
-        /* ------------------------------------- */
-
-        .photo-entry:hover img {
-            transform: scale(1.03); /* Slightly reduced zoom so it looks smoother */
+            height: auto; 
+            display: block;
         }
 
         .entry-content {
-            padding: 40px;
+            padding: 30px;
         }
 
         .meta-tag {
             font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
             color: var(--secondary); 
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 15px;
-            display: inline-block;
+            margin-bottom: 10px;
+            display: block;
         }
 
         .photo-title {
             font-family: 'Merriweather', serif;
             font-weight: 700;
-            font-size: 1.6rem;
-            margin: 0 0 15px 0;
+            font-size: 1.25rem;
+            margin: 0 0 10px 0;
             color: var(--text-main);
             line-height: 1.3;
         }
 
         .photo-caption {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-main);
             opacity: 0.85;
-            line-height: 1.8;
+            line-height: 1.7;
             margin: 0;
         }
 
+        /* --- Footer --- */
         footer {
-            padding: 60px 0; text-align: center; font-size: 0.85rem; color: var(--text-muted);
-            font-family: 'Inter', sans-serif; border-top: 1px solid var(--border-color); margin-top: 40px;
+            padding: 40px 0; 
+            text-align: center; 
+            font-size: 0.85rem; 
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif; 
+            border-top: 1px solid var(--border-color); 
+            margin-top: auto; 
         }
 
-        @media(max-width: 600px) {
+        /* --- Mobile Responsive --- */
+        @media(max-width: 768px) {
+            .gallery-grid { column-count: 1; }
+            .page-header h1 { font-size: 3rem; }
             .entry-content { padding: 25px; }
-            .page-header h1 { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <nav>
-        <a href="index.html" class="logo">Manish Kanda</a>
-        <div class="nav-links">
-            <a href="index.html">Journal</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="physics.html">Physics</a>
-        </div>
-    </nav>
+    <div class="container">
+        <nav>
+            <a href="index.html" class="logo">Manish Kanda</a>
+            
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Journal</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="physics.html">Physics</a>
+            </div>
 
-    <header class="page-header">
-        <h1>Visual Notes</h1>
-        <p>A curated collection of experiments, field work, and observations.</p>
-    </header>
+            <div class="hamburger" id="hamburger-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </nav>
 
-    <article class="photo-entry">
-        <div class="image-wrapper">
-            <img src="river.jpg" alt="Description of Photo 1">
-        </div>
-        <div class="entry-content">
-            <span class="meta-tag">CATEGORY 1</span>
-            <h2 class="photo-title">Title for Photo 1</h2>
-            <p class="photo-caption">
-                Write your description for the first photo here.
-            </p>
-        </div>
-    </article>
+        <header class="page-header">
+            <h1>Visual Notes</h1>
+            <p>A curated collection of experiments, field work, and observations.</p>
+        </header>
 
-    <article class="photo-entry">
-        <div class="image-wrapper">
-            <img src="pradeep.jpg" alt="Description of Photo 2">
-        </div>
-        <div class="entry-content">
-            <span class="meta-tag">CATEGORY 2</span>
-            <h2 class="photo-title">Title for Photo 2</h2>
-            <p class="photo-caption">
-                Write your description for the second photo here.
-            </p>
-        </div>
-    </article>
+        <div class="gallery-grid">
+            
+            <article class="photo-entry">
+                <div class="image-wrapper">
+                    <img src="river.jpg" alt="River Stream">
+                </div>
+                <div class="entry-content">
+                    <span class="meta-tag">Nature</span>
+                    <h2 class="photo-title">River Stream</h2>
+                    <p class="photo-caption">
+                        The constant flow of the river reminds me of the persistence required in research. Calm on the surface, but full of complex dynamics underneath.
+                    </p>
+                </div>
+            </article>
 
-    <article class="photo-entry">
-        <div class="image-wrapper">
-            <img src="resis.jpg" alt="Description of Photo 3">
-        </div>
-        <div class="entry-content">
-            <span class="meta-tag">CATEGORY 3</span>
-            <h2 class="photo-title">Title for Photo 3</h2>
-            <p class="photo-caption">
-                Write your description for the third photo here.
-            </p>
-        </div>
-    </article>
+            <article class="photo-entry">
+                <div class="image-wrapper">
+                    <img src="pradeep.jpg" alt="Me with Pradeep">
+                </div>
+                <div class="entry-content">
+                    <span class="meta-tag">Khani Peak</span>
+                    <h2 class="photo-title">Me with Pradeep</h2>
+                    <p class="photo-caption">
+                        We reached at this point after an hour of trekking, we were convinced it would take just ten more minutes—only to discover another mountain ahead. We finally reached after two hours from there.
+                    </p>
+                </div>
+            </article>
 
-    <article class="photo-entry">
-        <div class="image-wrapper">
-            <img src="temple.jpg" alt="Description of Photo 4">
-        </div>
-        <div class="entry-content">
-            <span class="meta-tag">CATEGORY 4</span>
-            <h2 class="photo-title">Title for Photo 4</h2>
-            <p class="photo-caption">
-                Write your description for the fourth photo here.
-            </p>
-        </div>
-    </article>
+            <article class="photo-entry">
+                <div class="image-wrapper">
+                    <img src="resis.jpg" alt="Trek Start">
+                </div>
+                <div class="entry-content">
+                    <span class="meta-tag">Khani Peak</span>
+                    <h2 class="photo-title">The Starting Trail</h2>
+                    <p class="photo-caption">
+                        Jeetu, me, and a few glimpses of the campus. Captured by Pradeep, resting after completing the starting trail.
+                    </p>
+                </div>
+            </article>
 
-    <footer>
-        © 2025 Manish Kanda.
-    </footer>
-</div>
+            <article class="photo-entry">
+                <div class="image-wrapper">
+                    <img src="temple.jpg" alt="Temple at Peak">
+                </div>
+                <div class="entry-content">
+                    <span class="meta-tag">Khani Peak</span>
+                    <h2 class="photo-title">Temple at the Peak</h2>
+                    <p class="photo-caption">
+                        This is the temple at the very top of Khani peak. The view from here puts the whole valley into perspective.
+                    </p>
+                </div>
+            </article>
+
+        </div>
+
+        <footer>
+            © 2026 Manish Kanda.
+        </footer>
+    </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger-btn');
+        const navMenu = document.getElementById('nav-links');
+        const icon = hamburger.querySelector('i');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            // Toggle between bars and X icon
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
+    </script>
+
 </body>
-</html>
+</html> 

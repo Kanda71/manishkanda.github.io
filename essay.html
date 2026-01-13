@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Silence of the Lab at Midnight | Manish Kanda</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Same palette as your homepage */
+            --bg-color: #FDFCF8;
+            --text-main: #2D334A;
+            --text-muted: #7C809B;
+            --primary: #0F4C5C;
+            --secondary: #E36414;
+            --border-color: #EAEAEA;
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.8;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Narrower container for reading comfort */
+        .container { 
+            max-width: 700px; 
+            margin: 0 auto; 
+            padding: 20px;
+            width: 100%;
+            flex: 1; 
+        }
+
+        /* --- Navigation --- */
+        nav {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+        
+        .logo { 
+            font-weight: 700; color: var(--primary); text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .back-link {
+            text-decoration: none; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .back-link:hover { color: var(--secondary); }
+
+        /* --- Article Styles --- */
+        .post-header { margin-bottom: 30px; text-align: center; }
+        
+        .post-date {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .post-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin: 10px 0 30px 0;
+            line-height: 1.2;
+        }
+
+        /* --- Image & Caption Styles (UPDATED) --- */
+        figure {
+            margin: 0 auto 40px auto; /* Centers the figure */
+            max-width: 80%; /* Limits width to 80% of the container */
+            text-align: center; /* Centers the caption text */
+        }
+
+        .main-image {
+            width: 100%; /* Takes up full width of the figure (which is restricted above) */
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Optional: adds subtle shadow */
+        }
+
+        figcaption {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* Writing Styles */
+        .content p { margin-bottom: 25px; font-size: 1.1rem; }
+        
+        .content h3 {
+            font-family: 'Inter', sans-serif;
+            color: var(--primary);
+            margin-top: 40px;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .content blockquote {
+            border-left: 3px solid var(--secondary);
+            margin: 30px 0;
+            padding-left: 20px;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        footer {
+            padding: 40px 0; text-align: center; font-size: 0.85rem; color: var(--text-muted);
+            font-family: 'Inter', sans-serif; border-top: 1px solid var(--border-color); margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="index.html" class="logo">Manish Kanda</a>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <span class="post-date">January 13, 2026</span>
+            <h1 class="post-title">Justifying Reasons</h1>
+        </header>
+
+        <figure>
+            <img src="int.jpg" alt="Lab equipment setup" class="main-image">
+            <figcaption>This is the view from my hostel room on rainy days.</figcaption>
+        </figure>
+
+        <div class="content">
+            <p>
+                This is the introductory post. I have been trying to justify why I have made this site. So I come up with three reasons.
+            </p>
+
+            <p>
+                First reason. Photos. We—cameras more than we. Efforts to find continuity perished—busy posing, me in pictures, framing backstories, long before unsmiling smiles, conscious, too conscious. Long before vanity started. (see gallery section)
+            </p>
+            <p>
+                Second reason. Master's Project. My Lab, Logs. Meetings with my professors. New tools I learn. New methods. Papers that fascinate me, and, in all, I, somewhere. (See physics section.)
+            </p>
+            <p>
+             Third reason. Reading. I read. I read fiction mostly. Characters. Places. Countries. The way it is told, the abstractness it has. I took courses outside my domain. Humanities courses. Exploration of the Himalayan culture and its people. Treks I did. New places I explored. I will put everything here. 
+            </p>
+
+            
+        </div>
+    </article>
+
+    <footer>
+        © 2026 Manish Kanda.
+    </footer>
+</div>
+
+</body>
+</html>

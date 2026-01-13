@@ -5,16 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manish Kanda | Home</title>
     
-    <link rel="icon" type="image/png" href="icon.png?v=2">
-    
+    <link rel="icon" type="image/png" href="icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
         :root {
             /* --- The Palette --- */
-            --bg-color: #FDFCF8;        /* Off-white paper look */
+            --bg-color: #FDFCF8;
             --text-main: #2D334A;
             --text-muted: #7C809B;
             --primary: #0F4C5C;         /* Deep Teal */
@@ -33,7 +29,6 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            overflow-x: hidden; 
         }
 
         .container { 
@@ -52,8 +47,6 @@
             align-items: center;
             font-family: 'Inter', sans-serif;
             margin-bottom: 60px;
-            position: relative;
-            z-index: 1000;
         }
         
         .logo { 
@@ -63,50 +56,26 @@
             text-transform: uppercase; 
             letter-spacing: 1px;
             text-decoration: none;
-            z-index: 1001;
         }
-        
-        .hamburger {
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--primary);
-            z-index: 1002;
-            transition: transform 0.3s ease;
-        }
-        
-        .hamburger:hover { color: var(--secondary); }
-
-        .nav-links {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            height: 100vh;
-            width: 250px;
-            background-color: var(--bg-color);
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: right 0.4s ease;
-            z-index: 1001;
-        }
-
-        .nav-links.active { right: 0; }
         
         .nav-links a {
-            margin: 20px 0;
+            margin-left: 30px;
             text-decoration: none;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 1rem;
+            font-size: 0.75rem;
             font-weight: 600;
             transition: 0.3s;
             position: relative;
         }
         
+        .nav-links a::after {
+            content: ''; display: block; width: 0; height: 2px;
+            background: var(--secondary); transition: width .3s; margin-top: 4px;
+        }
         .nav-links a:hover { color: var(--text-main); }
+        .nav-links a:hover::after { width: 100%; }
 
         /* --- HERO SECTION --- */
         .hero {
@@ -117,7 +86,9 @@
             margin-bottom: 80px;
         }
 
-        .hero-text { text-align: left; }
+        .hero-text {
+            text-align: left;
+        }
 
         .hero h1 { 
             font-size: 2.8rem; 
@@ -134,13 +105,18 @@
             margin-bottom: 30px;
         }
 
-        .image-wrapper { position: relative; }
+        .image-wrapper {
+            position: relative;
+        }
 
+        /* Teal Backdrop Block */
         .image-wrapper::before {
             content: "";
             position: absolute;
-            top: 15px; right: -15px;
-            width: 100%; height: 100%;
+            top: 15px;
+            right: -15px;
+            width: 100%;
+            height: 100%;
             background-color: var(--primary); 
             border-radius: 8px;
             z-index: -1; 
@@ -155,8 +131,24 @@
             border: 1px solid rgba(0,0,0,0.1);
         }
 
-        /* Hero Links CSS removed here */
-        
+        .hero-links {
+            display: flex;
+            gap: 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .hero-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .hero-links a:hover { text-decoration: underline; }
+
+
+        /* --- Divider --- */
         .section-divider {
             border: 0;
             height: 1px;
@@ -188,7 +180,7 @@
         .image-container {
             width: 100%; height: 420px; overflow: hidden; border-radius: 8px;
             margin-bottom: 25px; box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-            background-color: #eee; 
+            background-color: #eee; /* Placeholder gray */
         }
         .blog-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .blog-post:hover .blog-image { transform: scale(1.03); }
@@ -205,129 +197,9 @@
             transform: translateY(-2px); box-shadow: 0 5px 15px rgba(227, 100, 20, 0.3);
         }
 
-        /* --- ARTISTIC SUBSCRIBE SECTION --- */
-        .subscribe-section {
-            text-align: center;
-            padding: 80px 20px;
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        /* Gemini/Star Icon Removed */
-
-        .subscribe-section h3 {
-            font-family: 'Merriweather', serif;
-            font-style: italic;
-            font-weight: 300;
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .subscribe-section p {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            letter-spacing: 0.5px;
-        }
-
-        .artistic-form {
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .artistic-input {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid var(--text-muted);
-            padding: 10px 5px;
-            font-family: 'Merriweather', serif;
-            font-size: 1rem;
-            color: var(--text-main);
-            width: 100%;
-            max-width: 300px;
-            transition: border-color 0.3s ease;
-            border-radius: 0;
-        }
-
-        .artistic-input:focus {
-            outline: none;
-            border-bottom: 1px solid var(--secondary);
-        }
-
-        .artistic-input::placeholder {
-            color: #aaa;
-            font-style: italic;
-            font-family: 'Merriweather', serif;
-        }
-
-        .artistic-btn {
-            background: transparent;
-            color: var(--text-main);
-            border: 1px solid var(--text-main);
-            padding: 8px 25px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .artistic-btn:hover {
-            background-color: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-        }
-
-        /* --- ARTISTIC FOOTER --- */
         footer {
-            margin-top: 0;
-            padding-bottom: 60px;
-            text-align: center;
-        }
-
-        .signature {
-            font-family: 'Sacramento', cursive;
-            font-size: 2.5rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            transform: rotate(-2deg);
-            display: inline-block;
-        }
-
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 30px;
-        }
-
-        .footer-socials a {
-            color: var(--text-main);
-            font-size: 1.2rem;
-            text-decoration: none;
-            position: relative;
-            transition: color 0.3s;
-        }
-
-        .footer-socials a:hover { color: var(--secondary); }
-
-        .copyright {
-            font-size: 0.8rem;
-            color: #bbb;
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-        }
-        
-        .copyright-symbol {
-            font-size: 0.9rem;
-            vertical-align: middle;
+            padding: 60px 0; text-align: center; font-size: 0.85rem; color: var(--text-muted);
+            font-family: 'Inter', sans-serif; border-top: 1px solid var(--border-color); margin-top: 40px;
         }
 
         /* Mobile Adjustments */
@@ -338,7 +210,11 @@
                 gap: 30px;
             }
             .hero-text { text-align: center; order: 2; }
-            .image-wrapper { order: 1; width: 70%; margin: 0 auto; }
+            .image-wrapper { 
+                order: 1; 
+                width: 70%; 
+                margin: 0 auto; 
+            }
             .hero-links { justify-content: center; }
             .image-wrapper::before { top: 10px; right: -10px; }
         }
@@ -350,14 +226,10 @@
     <nav>
         <a href="index.html" class="logo">Manish Kanda</a>
 
-        <div class="nav-links" id="nav-links">
+        <div class="nav-links">
             <a href="gallery.html">Gallery</a>
             <a href="portfolio.html">Portfolio</a>
             <a href="physics.html">Physics</a>
-        </div>
-
-        <div class="hamburger" id="hamburger-btn">
-            <i class="fa-solid fa-bars"></i>
         </div>
     </nav>
 
@@ -367,7 +239,11 @@
             <p>
                 I write essays at the intersection of science and daily life. This is my digital notebook for thoughts on research and navigating academia.
             </p>
+            <div class="hero-links">
+                <a href="mailto:YOUR_EMAIL@gmail.com">Email Me →</a>
+                <a href="https://linkedin.com/in/YOUR-PROFILE">LinkedIn →</a>
             </div>
+        </div>
         
         <div class="image-wrapper">
             <img src="me.jpg" alt="Manish Kanda" class="profile-img">
@@ -380,67 +256,32 @@
         <h2 class="journal-heading">Journal</h2>
 
         <article class="blog-post">
-            <h2><a href="essay.html">Why this site?</a></h2>
-            
+            <h2><a href="#">The Silence of the Lab at Midnight</a></h2>
             <div class="image-container">
-                <img src="int.jpg" alt="Things that actually counts class" class="blog-image">
+                <img src="blog-1.jpg" alt="Lab equipment" class="blog-image">
             </div>
-            
             <p class="post-excerpt">
-                The justified reasons
+                There is a specific kind of quiet that falls over the physics department during the holidays. The hum of the cryostat becomes the only reference for time as I analyze the latest instability data...
             </p>
-            
-            <a href="essay.html" class="read-more">Read Entry</a>
+            <a href="#" class="read-more">Read Entry</a>
         </article>
 
-        
+        <article class="blog-post">
+            <h2><a href="#">On Halide Perovskites</a></h2>
+            <div class="image-container">
+                <img src="blog-2.jpg" alt="Crystal structure abstract" class="blog-image">
+            </div>
+            <p class="post-excerpt">
+                We often look for stability in materials, but sometimes instability is where the interesting physics hides. Here are my notes on the quasiparticle analysis and what it means for future electronics.
+            </p>
+            <a href="#" class="read-more">Read Entry</a>
+        </article>
     </div>
 
     <footer>
-        <div class="signature">Manish Kanda</div>
-        
-        <div class="footer-socials">
-            <a href="mailto:Manishkanda71@gmail.com" title="Email">
-                <i class="fa-regular fa-envelope"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/manish-kanda-415545208" title="LinkedIn">
-                <i class="fa-brands fa-linkedin-in"></i>
-            </a>
-            
-        </div>
-
-        <div class="copyright">
-            &copy; 2026 Manish Kanda. All Rights Reserved.<br>
-           
-        </div>
+        © 2025 Manish Kanda.
     </footer>
-
 </div>
-
-<script>
-    const hamburger = document.getElementById('hamburger-btn');
-    const navMenu = document.getElementById('nav-links');
-    const icon = hamburger.querySelector('i');
-
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        if (navMenu.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-xmark');
-        } else {
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
-        }
-    });
-
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
-        });
-    });
-</script>
 
 </body>
 </html>
