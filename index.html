@@ -13,12 +13,11 @@
 
     <style>
         :root {
-            /* --- The Palette --- */
-            --bg-color: #FDFCF8;        /* Off-white paper look */
+            --bg-color: #FDFCF8;
             --text-main: #2D334A;
             --text-muted: #7C809B;
-            --primary: #0F4C5C;         /* Deep Teal */
-            --secondary: #E36414;       /* Terracotta */
+            --primary: #0F4C5C;
+            --secondary: #E36414;
             --highlight: #FFF0E5;       
             --border-color: #EAEAEA;
         }
@@ -29,7 +28,6 @@
             color: var(--text-main);
             margin: 0;
             line-height: 1.8;
-            -webkit-font-smoothing: antialiased;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -63,37 +61,55 @@
             text-transform: uppercase; 
             letter-spacing: 1px;
             text-decoration: none;
-            z-index: 1002; /* Above the slide-out menu */
+            z-index: 1002; /* Keeps logo above the white slide-out panel */
         }
         
+        /* HAMBURGER - ALWAYS VISIBLE */
         .hamburger {
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--primary);
-            z-index: 1002; /* Above the slide-out menu */
+            z-index: 1002; /* Keeps icon above the white slide-out panel */
             transition: transform 0.3s ease;
-            display: none; /* Hidden by default on desktop */
+            display: block; /* Forced display on all screens */
         }
         
         .hamburger:hover { color: var(--secondary); }
 
+        /* NAV LINKS - ALWAYS A SLIDE-OUT SIDEBAR */
         .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%; /* Hidden off-screen to the right */
+            height: 100vh;
+            width: 300px; /* Fixed width for the sidebar */
+            background-color: var(--bg-color);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
             display: flex;
-            gap: 30px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); /* Smooth slide animation */
+            z-index: 1001;
+        }
+
+        /* The class added by JS to show the menu */
+        .nav-links.active {
+            right: 0; 
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+            font-weight: 500;
             transition: 0.3s;
-            position: relative;
+            margin: 25px 0; /* Vertical spacing between links */
         }
         
-        .nav-links a:hover { color: var(--secondary); }
+        .nav-links a:hover { color: var(--secondary); transform: translateX(5px); }
 
         /* --- HERO SECTION --- */
         .hero {
@@ -124,7 +140,7 @@
 
         .image-wrapper { 
             position: relative; 
-            padding: 15px; /* Creates space for the colored box */
+            padding: 15px; 
         }
 
         .image-wrapper::before {
@@ -169,7 +185,7 @@
 
         .blog-post { 
             margin-bottom: 90px; 
-            max-width: 700px; /* Limits width for better reading */
+            max-width: 700px; 
             margin-left: auto;
             margin-right: auto;
         }
@@ -186,7 +202,6 @@
 
         .image-container {
             width: 100%; 
-            /* Switched to aspect-ratio for better responsiveness */
             aspect-ratio: 16/9; 
             overflow: hidden; 
             border-radius: 8px;
@@ -200,7 +215,7 @@
             height: 100%; 
             object-fit: cover; 
             transition: transform 0.5s ease;
-            filter: grayscale(20%); /* Slight mute to match theme */
+            filter: grayscale(20%); 
         }
         
         .blog-post:hover .blog-image { 
@@ -226,7 +241,7 @@
             transform: translateY(-2px); box-shadow: 0 5px 15px rgba(227, 100, 20, 0.2);
         }
 
-        /* --- ARTISTIC SUBSCRIBE SECTION --- */
+        /* --- Subscribe Section --- */
         .subscribe-section {
             text-align: center;
             padding: 60px 20px;
@@ -237,133 +252,57 @@
         }
         
         .subscribe-section h3 {
-            font-family: 'Merriweather', serif;
-            font-style: italic;
-            font-weight: 300;
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 10px;
+            font-family: 'Merriweather', serif; font-style: italic; font-weight: 300; font-size: 1.8rem; color: var(--primary); margin-bottom: 10px;
         }
 
         .subscribe-section p {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
+            font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 30px;
         }
 
-        .artistic-form {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
+        .artistic-form { display: flex; align-items: center; justify-content: center; gap: 10px; }
 
         .artistic-input {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #ccc;
-            padding: 10px 5px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            color: var(--text-main);
-            width: 100%;
-            max-width: 250px;
+            background: transparent; border: none; border-bottom: 1px solid #ccc; padding: 10px 5px;
+            font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text-main); width: 100%; max-width: 250px;
         }
         
         .artistic-input:focus { outline: none; border-bottom-color: var(--secondary); }
 
         .artistic-btn {
-            background: transparent;
-            color: var(--text-main);
-            border: 1px solid var(--text-main);
-            padding: 8px 20px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            background: transparent; color: var(--text-main); border: 1px solid var(--text-main); padding: 8px 20px;
+            font-family: 'Inter', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px;
+            cursor: pointer; transition: all 0.3s ease;
         }
 
-        .artistic-btn:hover {
-            background-color: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-        }
+        .artistic-btn:hover { background-color: var(--primary); color: #fff; border-color: var(--primary); }
 
-        /* --- ARTISTIC FOOTER --- */
-        footer {
-            margin-top: 0;
-            padding-bottom: 60px;
-            text-align: center;
-        }
+        /* --- Footer --- */
+        footer { margin-top: 0; padding-bottom: 60px; text-align: center; }
 
         .signature {
-            font-family: 'Sacramento', cursive;
-            font-size: 2.5rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            transform: rotate(-2deg);
-            display: inline-block;
+            font-family: 'Sacramento', cursive; font-size: 2.5rem; color: var(--text-muted); margin-bottom: 30px;
+            transform: rotate(-2deg); display: inline-block;
         }
 
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 30px;
-        }
-
-        .footer-socials a {
-            color: var(--text-main);
-            font-size: 1.2rem;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
+        .footer-socials { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; }
+        .footer-socials a { color: var(--text-main); font-size: 1.2rem; text-decoration: none; transition: color 0.3s; }
         .footer-socials a:hover { color: var(--secondary); }
 
-        .copyright {
-            font-size: 0.8rem;
-            color: #bbb;
-            font-family: 'Inter', sans-serif;
-        }
+        .copyright { font-size: 0.8rem; color: #bbb; font-family: 'Inter', sans-serif; }
 
-        /* Mobile Adjustments */
+        /* --- MOBILE RESPONSIVE TWEAKS --- */
         @media(max-width: 768px){
-            .hamburger { display: block; }
-            
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -300px;
-                height: 100vh;
-                width: 250px;
-                background-color: var(--bg-color);
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transition: right 0.4s ease;
-                z-index: 1001;
-            }
-
-            .nav-links.active { right: 0; }
-            
-            .nav-links a { margin: 20px 0; font-size: 1rem; }
-
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 30px;
-            }
+            /* Just ensuring the hero stacks correctly, menu logic is already global */
+            .hero { grid-template-columns: 1fr; text-align: center; gap: 30px; }
             .hero-text { text-align: center; order: 2; }
             .image-wrapper { order: 1; width: 70%; margin: 0 auto; }
             
             .subscribe-section { padding: 40px 20px; }
             .artistic-form { flex-direction: column; }
             .artistic-input { text-align: center; }
+            
+            /* On very small screens, menu takes full width */
+            .nav-links { width: 100%; } 
         }
     </style>
 </head>
@@ -457,13 +396,14 @@
         navMenu.classList.toggle('active');
         if (navMenu.classList.contains('active')) {
             icon.classList.remove('fa-bars');
-            icon.classList.add('fa-xmark');
+            icon.classList.add('fa-xmark'); // Changes to X
         } else {
             icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
+            icon.classList.add('fa-bars'); // Changes back to Hamburger
         }
     });
 
+    // Close menu automatically when a link is clicked
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');

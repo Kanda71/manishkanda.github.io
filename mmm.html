@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post | Manish Kanda</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Same palette as your homepage */
+            --bg-color: #FDFCF8;
+            --text-main: #2D334A;
+            --text-muted: #7C809B;
+            --primary: #0F4C5C;
+            --secondary: #E36414;
+            --border-color: #EAEAEA;
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.8;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Narrower container for reading comfort */
+        .container { 
+            max-width: 700px; 
+            margin: 0 auto; 
+            padding: 20px;
+            width: 100%;
+            flex: 1; 
+        }
+
+        /* --- Navigation --- */
+        nav {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+        
+        .logo { 
+            font-weight: 700; color: var(--primary); text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .back-link {
+            text-decoration: none; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .back-link:hover { color: var(--secondary); }
+
+        /* --- Article Styles --- */
+        .post-header { margin-bottom: 40px; text-align: center; }
+        
+        .post-date {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .post-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin: 10px 0 30px 0;
+            line-height: 1.2;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        /* Writing Styles */
+        .content p { margin-bottom: 25px; font-size: 1.1rem; }
+        
+        .content h3 {
+            font-family: 'Inter', sans-serif;
+            color: var(--primary);
+            margin-top: 40px;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .content blockquote {
+            border-left: 3px solid var(--secondary);
+            margin: 30px 0;
+            padding-left: 20px;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        footer {
+            padding: 40px 0; text-align: center; font-size: 0.85rem; color: var(--text-muted);
+            font-family: 'Inter', sans-serif; border-top: 1px solid var(--border-color); margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="index.html" class="logo">Manish Kanda</a>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <span class="post-date">December 29, 2025</span>
+            <h1 class=The Silence of the Lab at Midnight>The Silence of the Lab at Midnight</h1>
+        </header>
+
+        <img src=temple.jpg alt="Lab equipment" class="main-image">
+
+        <div class="content">
+            <p>
+                This is the opening paragraph of your blog post. You can write about what you were doing in the lab, a thought you had during a lecture, or a breakdown of a complex physics concept.
+            </p>
+
+            <p>
+                Use simple <code>&lt;p&gt;</code> tags for every new paragraph. It keeps the text breathable and easy to read.
+            </p>
+
+            <h3>This is a Subheading</h3>
+            <p>
+                If you are writing a long essay, break it up with subheadings. It helps the reader follow your logic. For example, if you are discussing Halide Perovskites, you might have sections for "Structure," "Stability Issues," and "Future Applications."
+            </p>
+
+            <blockquote>
+                "This is a blockquote. Use this feature to highlight a specific sentence, a quote from a paper, or a key realization you had."
+            </blockquote>
+
+            <p>
+                Concluding thoughts go here. Wrap up your post and perhaps link to other resources or papers you mentioned.
+            </p>
+        </div>
+    </article>
+
+    <footer>
+        © 2025 Manish Kanda.
+    </footer>
+</div>
+
+</body>
+</html>

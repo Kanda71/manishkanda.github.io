@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Log | Research & Notes</title>
+    <style>
+        /* --- 1. RESET & BASE STYLES --- */
+        * {
+            box-sizing: border-box; /* Crucial fix: padding doesn't add to width */
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased; /* Makes text sharper on Mac */
+        }
+
+        /* --- 2. LAYOUT --- */
+        .physics-feed-wrapper {
+            padding: 60px 20px;
+            min-height: 100vh;
+        }
+
+        .feed-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .feed-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .feed-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #222;
+            letter-spacing: -0.5px;
+        }
+
+        .feed-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* --- 3. CARD COMPONENT --- */
+        .vlog-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
+            overflow: hidden; /* Keeps image inside border-radius */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex; /* Fixes whitespace issues with images */
+            flex-direction: column;
+        }
+
+        .vlog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        /* Image Area */
+        .card-image-container {
+            width: 100%;
+            height: 350px;
+            background-color: #e9ecef;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: block; /* Removes bottom gap */
+        }
+
+        .vlog-card:hover .card-image-container img {
+            transform: scale(1.05);
+        }
+
+        /* Floating Category Tag */
+        .category-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px); /* Safari support */
+        }
+
+        .tag-research { background-color: rgba(108, 92, 231, 0.95); }
+        .tag-teaching { background-color: rgba(0, 184, 148, 0.95); }
+        .tag-hobby    { background-color: rgba(225, 112, 85, 0.95); }
+
+        /* Content Area */
+        .card-body {
+            padding: 35px;
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 12px;
+            display: block;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            margin: 0 0 15px 0;
+            line-height: 1.25;
+            color: #2d3436;
+        }
+
+        .card-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #636e72;
+            margin-bottom: 25px;
+        }
+
+        /* Button Styling */
+        .card-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #2d3436;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .card-btn:hover {
+            background-color: #000;
+            transform: translateY(-2px); /* Subtle lift */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* --- 4. RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .physics-feed-wrapper { padding: 40px 15px; }
+            .card-image-container { height: 250px; }
+            .card-title { font-size: 1.5rem; }
+            .card-body { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="physics-feed-wrapper">
+    <div class="feed-container">
+        
+        <header class="feed-header">
+            <h2>Physics Log</h2>
+            <p>Updates from the Lab, Lecture Hall, and Workbench.</p>
+        </header>
+
+        <article class="vlog-card">
+            <div class="card-image-container">
+                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80" alt="Laboratory test tubes and glassware">
+                <span class="category-tag tag-research">IIT Mandi Research</span>
+            </div>
+            <div class="card-body">
+                <time class="post-meta" datetime="2025-12-28">December 28, 2025</time>
+                <h3 class="card-title">Probing Quasiparticles in Halide Perovskites</h3>
+                <p class="card-text">
+                    This week in the lab, we focused on the temperature-dependent photoluminescence of CsPbBr₃. 
+                    I'm investigating how lattice vibrations (phonons) interact with charge carriers. 
+                    The data is showing some interesting anomalies at low temperatures.
+                </p>
+                <a href="#" class="card-btn">Read Abstract</a>
+            </div>
+        </article>
+
+        <article class="vlog-card">
+            <div class="card-image-container">
+                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80" alt="Blackboard with physics equations">
+                <span class="category-tag tag-teaching">Class 12 Notes</span>
+            </div>
+            <div class="card-body">
+                <time class="post-meta" datetime="2025-11-10">November 10, 2025</time>
+                <h3 class="card-title">Electrostatics: Visualizing Electric Fields</h3>
+                <p class="card-text">
+                    I've uploaded my handwritten notes from our recent lecture on Charge Distribution. 
+                    Includes diagrams drawn on my pen tablet and solved problems for JEE/NEET prep.
+                </p>
+                <a href="#" class="card-btn">Download PDF</a>
+            </div>
+        </article>
+
+        <article class="vlog-card">
+            <div class="card-image-container">
+                <img src="https://images.unsplash.com/photo-1517077304055-6e89abbec696?auto=format&fit=crop&w=800&q=80" alt="Electronic circuit board close up">
+                <span class="category-tag tag-hobby">Electronics Build</span>
+            </div>
+            <div class="card-body">
+                <time class="post-meta" datetime="2025-10-05">October 05, 2025</time>
+                <h3 class="card-title">Weekend Build: The 555 Timer Project</h3>
+                <p class="card-text">
+                    Taking a break from Quantum Mechanics to build a simple astable multivibrator. 
+                    Check out the circuit diagram and my explanation of how the capacitor charging cycle works.
+                </p>
+                <a href="#" class="card-btn">View Circuit</a>
+            </div>
+        </article>
+
+    </div>
+</div>
+
+</body>
+</html>
