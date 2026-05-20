@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manish Kanda | Home</title>
+    
+    <link rel="icon" type="image/png" href="icon.png?v=2">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #FDFCF8;
+            --text-main: #2D334A;
+            --text-muted: #7C809B;
+            --primary: #0F4C5C;
+            --secondary: #E36414;
+            --highlight: #FFF0E5;       
+            --border-color: #EAEAEA;
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.8;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden; 
+        }
+
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            width: 100%;
+            flex: 1; 
+        }
+
+        /* --- Navigation --- */
+        nav {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1000;
+        }
+        
+        .logo { 
+            font-weight: 700; 
+            font-size: 1.1rem; 
+            color: var(--primary);
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            text-decoration: none;
+            z-index: 1002; /* Keeps logo above the white slide-out panel */
+        }
+        
+        /* HAMBURGER - ALWAYS VISIBLE */
+        .hamburger {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+            z-index: 1002; /* Keeps icon above the white slide-out panel */
+            transition: transform 0.3s ease;
+            display: block; /* Forced display on all screens */
+        }
+        
+        .hamburger:hover { color: var(--secondary); }
+
+        /* NAV LINKS - ALWAYS A SLIDE-OUT SIDEBAR */
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%; /* Hidden off-screen to the right */
+            height: 100vh;
+            width: 300px; /* Fixed width for the sidebar */
+            background-color: var(--bg-color);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); /* Smooth slide animation */
+            z-index: 1001;
+        }
+
+        /* The class added by JS to show the menu */
+        .nav-links.active {
+            right: 0; 
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: 0.3s;
+            margin: 25px 0; /* Vertical spacing between links */
+        }
+        
+        .nav-links a:hover { color: var(--secondary); transform: translateX(5px); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr; 
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 80px;
+            padding-top: 20px;
+        }
+
+        .hero-text { text-align: left; }
+
+        .hero h1 { 
+            font-size: 2.8rem; 
+            margin: 0 0 20px 0; 
+            color: var(--primary); 
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        
+        .hero p { 
+            font-size: 1.15rem; 
+            color: var(--text-main); 
+            opacity: 0.9; 
+            margin-bottom: 30px;
+        }
+
+        .image-wrapper { 
+            position: relative; 
+            padding: 15px; 
+        }
+
+        .image-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 30px; 
+            right: 0;
+            width: 100%; 
+            height: 100%;
+            background-color: var(--highlight); 
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            z-index: -1; 
+        }
+
+        .profile-img {
+            width: 100%; 
+            aspect-ratio: 3/4; 
+            border-radius: 8px;
+            object-fit: cover; 
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .section-divider {
+            border: 0;
+            height: 1px;
+            background: var(--border-color);
+            width: 100%;
+            margin: 60px auto;
+        }
+
+        /* --- Journal Section --- */
+        .journal-heading {
+            font-family: 'Sacramento', cursive;
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--primary);
+            font-weight: 400;
+        }
+
+        .blog-post { 
+            margin-bottom: 90px; 
+            max-width: 700px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .blog-post h2 { font-size: 1.9rem; margin-bottom: 15px; font-weight: 700; }
+        
+        .blog-post h2 a {
+            text-decoration: none; color: var(--text-main); transition: color 0.2s;
+            background-image: linear-gradient(to right, var(--highlight) 0%, var(--highlight) 100%);
+            background-size: 0% 10px; background-repeat: no-repeat; background-position: left bottom 2px;
+            transition: background-size 0.3s;
+        }
+        .blog-post h2 a:hover { background-size: 100% 10px; }
+
+        .image-container {
+            width: 100%; 
+            aspect-ratio: 16/9; 
+            overflow: hidden; 
+            border-radius: 8px;
+            margin-bottom: 25px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            background-color: #eee; 
+        }
+        
+        .blog-image { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: transform 0.5s ease;
+            filter: grayscale(20%); 
+        }
+        
+        .blog-post:hover .blog-image { 
+            transform: scale(1.03); 
+            filter: grayscale(0%);
+        }
+        
+        .post-excerpt { 
+            font-size: 1.05rem; 
+            color: var(--text-main); 
+            opacity: 0.85; 
+            margin-bottom: 25px; 
+        }
+
+        .read-more {
+            display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.75rem;
+            color: var(--secondary); background-color: var(--highlight);
+            padding: 10px 22px; border-radius: 30px; text-decoration: none;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
+        }
+        .read-more:hover {
+            background-color: var(--secondary); color: white;
+            transform: translateY(-2px); box-shadow: 0 5px 15px rgba(227, 100, 20, 0.2);
+        }
+
+        /* --- Subscribe Section --- */
+        .subscribe-section {
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 500px;
+            margin: 0 auto 40px auto;
+            border-top: 1px dashed var(--border-color);
+            border-bottom: 1px dashed var(--border-color);
+        }
+        
+        .subscribe-section h3 {
+            font-family: 'Merriweather', serif; font-style: italic; font-weight: 300; font-size: 1.8rem; color: var(--primary); margin-bottom: 10px;
+        }
+
+        .subscribe-section p {
+            font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 30px;
+        }
+
+        .artistic-form { display: flex; align-items: center; justify-content: center; gap: 10px; }
+
+        .artistic-input {
+            background: transparent; border: none; border-bottom: 1px solid #ccc; padding: 10px 5px;
+            font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text-main); width: 100%; max-width: 250px;
+        }
+        
+        .artistic-input:focus { outline: none; border-bottom-color: var(--secondary); }
+
+        .artistic-btn {
+            background: transparent; color: var(--text-main); border: 1px solid var(--text-main); padding: 8px 20px;
+            font-family: 'Inter', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px;
+            cursor: pointer; transition: all 0.3s ease;
+        }
+
+        .artistic-btn:hover { background-color: var(--primary); color: #fff; border-color: var(--primary); }
+
+        /* --- Footer --- */
+        footer { margin-top: 0; padding-bottom: 60px; text-align: center; }
+
+        .signature {
+            font-family: 'Sacramento', cursive; font-size: 2.5rem; color: var(--text-muted); margin-bottom: 30px;
+            transform: rotate(-2deg); display: inline-block;
+        }
+
+        .footer-socials { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; }
+        .footer-socials a { color: var(--text-main); font-size: 1.2rem; text-decoration: none; transition: color 0.3s; }
+        .footer-socials a:hover { color: var(--secondary); }
+
+        .copyright { font-size: 0.8rem; color: #bbb; font-family: 'Inter', sans-serif; }
+
+        /* --- MOBILE RESPONSIVE TWEAKS --- */
+        @media(max-width: 768px){
+            /* Just ensuring the hero stacks correctly, menu logic is already global */
+            .hero { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+            .hero-text { text-align: center; order: 2; }
+            .image-wrapper { order: 1; width: 70%; margin: 0 auto; }
+            
+            .subscribe-section { padding: 40px 20px; }
+            .artistic-form { flex-direction: column; }
+            .artistic-input { text-align: center; }
+            
+            /* On very small screens, menu takes full width */
+            .nav-links { width: 100%; } 
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="index.html" class="logo">Manish Kanda</a>
+
+        <div class="nav-links" id="nav-links">
+            <a href="gallery.html">Gallery</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="physics.html">Physics</a>
+        </div>
+
+        <div class="hamburger" id="hamburger-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Hi, I’m Manish Kanda.</h1>
+            <p>
+                I write essays at the intersection of science and daily life. This is my digital notebook for thoughts on research, photography, and navigating academia.
+            </p>
+            <a href="essay.html" style="text-decoration:none; border-bottom: 2px solid var(--secondary); color: var(--text-main); font-weight: 700;">Read latest entry &rarr;</a>
+        </div>
+        
+        <div class="image-wrapper">
+            <img src="casm.png" alt="Manish Kanda" class="profile-img">
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <div class="journal-section">
+        <h2 class="journal-heading">Journal</h2>
+
+        <article class="blog-post">
+            <h2><a href="essay.html">Why this site?</a></h2>
+            
+            <div class="image-container">
+                <a href="essay.html">
+                    <img src="int.jpg" alt="View of the Himalayan foothills" class="blog-image">
+                </a>
+            </div>
+            
+            <p class="post-excerpt">
+                This is the introductory post. I have been trying to justify why I made this site...
+            </p>
+            
+            <a href="essay.html" class="read-more">Read Entry</a>
+        </article>
+    </div>
+
+    <div class="subscribe-section">
+        <h3>Stay Connected</h3>
+        <p>Occasional updates on physics, writing, and life in the hills.</p>
+        <form class="artistic-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+            <input type="email" placeholder="Your email address" class="artistic-input" required>
+            <button type="submit" class="artistic-btn">Join</button>
+        </form>
+    </div>
+
+    <footer>
+        <div class="signature">Manish Kanda</div>
+        
+        <div class="footer-socials">
+            <a href="mailto:Manishkanda71@gmail.com" title="Email">
+                <i class="fa-regular fa-envelope"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/manish-kanda-415545208" title="LinkedIn">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+        </div>
+
+        <div class="copyright">
+            &copy; 2026 Manish Kanda. All Rights Reserved.
+        </div>
+    </footer>
+
+</div>
+
+<script>
+    const hamburger = document.getElementById('hamburger-btn');
+    const navMenu = document.getElementById('nav-links');
+    const icon = hamburger.querySelector('i');
+
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        if (navMenu.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-xmark'); // Changes to X
+        } else {
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars'); // Changes back to Hamburger
+        }
+    });
+
+    // Close menu automatically when a link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        });
+    });
+</script>
+
+</body>
+</html>

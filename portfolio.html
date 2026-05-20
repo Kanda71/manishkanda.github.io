@@ -12,46 +12,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* --- GLOBAL VARIABLES & BASE (From index.html) --- */
         :root {
-            /* --- The Palette --- */
-            --bg-color: #FDFCF8;        /* Off-white paper look */
+            --bg-color: #FDFCF8;
             --text-main: #2D334A;
             --text-muted: #7C809B;
-            --primary: #0F4C5C;         /* Deep Teal */
-            --secondary: #E36414;       /* Terracotta */
+            --primary: #0F4C5C;
+            --secondary: #E36414;
             --highlight: #FFF0E5;       
             --border-color: #EAEAEA;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: 'Merriweather', serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            margin: 0;
             line-height: 1.8;
-            -webkit-font-smoothing: antialiased;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             overflow-x: hidden; 
+            -webkit-font-smoothing: antialiased;
         }
 
         .container { 
-            max-width: 1000px; /* Slightly wider for portfolio grid */
+            max-width: 900px; /* Kept standard width for consistency */
             margin: 0 auto; 
             padding: 20px; 
             width: 100%;
             flex: 1; 
         }
 
-        /* --- Navigation --- */
+        /* --- NAVIGATION (From index.html) --- */
         nav {
             padding: 40px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-family: 'Inter', sans-serif;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             position: relative;
             z-index: 1000;
         }
@@ -63,15 +68,16 @@
             text-transform: uppercase; 
             letter-spacing: 1px;
             text-decoration: none;
-            z-index: 1001;
+            z-index: 1002; 
         }
         
         .hamburger {
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--primary);
-            z-index: 1002;
+            z-index: 1002; 
             transition: transform 0.3s ease;
+            display: block; 
         }
         
         .hamburger:hover { color: var(--secondary); }
@@ -79,68 +85,55 @@
         .nav-links {
             position: fixed;
             top: 0;
-            right: -300px;
+            right: -100%; 
             height: 100vh;
-            width: 250px;
+            width: 300px; 
             background-color: var(--bg-color);
             box-shadow: -5px 0 15px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: right 0.4s ease;
+            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
             z-index: 1001;
         }
 
         .nav-links.active { right: 0; }
-        
+
         .nav-links a {
-            margin: 20px 0;
             text-decoration: none;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 1rem;
-            font-weight: 600;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+            font-weight: 500;
             transition: 0.3s;
-            position: relative;
+            margin: 25px 0; 
         }
         
-        .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
-        
-        /* Active Link Indicator */
-        .nav-links a.active::after {
-            content: '';
-            display: block;
-            width: 100%;
-            height: 2px;
-            background: var(--secondary);
-            margin-top: 5px;
-        }
+        .nav-links a:hover { color: var(--secondary); transform: translateX(5px); }
 
         /* --- PAGE HEADER --- */
         .page-header {
             text-align: center;
             margin-bottom: 60px;
-            padding-top: 20px;
         }
         
         .page-title {
             font-family: 'Sacramento', cursive;
-            font-size: 4.5rem;
+            font-size: 4rem;
             color: var(--primary);
-            margin: 0;
-            line-height: 1.2;
+            margin: 0 0 10px 0;
+            font-weight: 400;
         }
         
         .page-subtitle {
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
+            font-family: 'Merriweather', serif;
+            font-size: 1.1rem;
             color: var(--text-muted);
-            margin-top: 10px;
         }
 
-        /* --- ARTISTIC PORTFOLIO GRID CSS --- */
+        /* --- ARTISTIC PORTFOLIO GRID --- */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -151,8 +144,7 @@
         .artistic-card {
             background-color: #fff;
             position: relative;
-            border: 1px solid rgba(0,0,0,0.05);
-            /* The Terracotta top accent */
+            border: 1px solid var(--border-color);
             border-top: 3px solid var(--secondary); 
             padding: 35px 30px;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -165,7 +157,6 @@
             box-shadow: 0 20px 40px rgba(15, 76, 92, 0.08);
         }
 
-        /* The Background Number (01, 02) */
         .artistic-card::before {
             content: attr(data-number);
             position: absolute;
@@ -254,45 +245,28 @@
             gap: 8px;
             transition: color 0.3s;
         }
+        
         .view-link:hover { color: var(--secondary); }
         .view-link i { font-size: 0.8rem; transition: transform 0.3s; }
         .view-link:hover i { transform: translateX(4px); }
 
-        /* --- FOOTER --- */
-        footer {
-            margin-top: auto;
-            padding-bottom: 60px;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            padding-top: 60px;
+        /* --- FOOTER (From index.html) --- */
+        footer { margin-top: auto; padding-bottom: 60px; text-align: center; }
+
+        .signature {
+            font-family: 'Sacramento', cursive; font-size: 2.5rem; color: var(--text-muted); margin-bottom: 30px;
+            transform: rotate(-2deg); display: inline-block;
         }
 
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 30px;
-        }
-
-        .footer-socials a {
-            color: var(--text-main);
-            font-size: 1.2rem;
-            text-decoration: none;
-            position: relative;
-            transition: color 0.3s;
-        }
-
+        .footer-socials { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; }
+        .footer-socials a { color: var(--text-main); font-size: 1.2rem; text-decoration: none; transition: color 0.3s; }
         .footer-socials a:hover { color: var(--secondary); }
 
-        .copyright {
-            font-size: 0.8rem;
-            color: #bbb;
-            font-family: 'Inter', sans-serif;
-        }
+        .copyright { font-size: 0.8rem; color: #bbb; font-family: 'Inter', sans-serif; }
 
-        /* Mobile Adjustments */
+        /* --- MOBILE RESPONSIVE --- */
         @media(max-width: 768px){
-            .page-title { font-size: 3rem; }
+            .nav-links { width: 100%; }
             .portfolio-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -304,9 +278,8 @@
         <a href="index.html" class="logo">Manish Kanda</a>
 
         <div class="nav-links" id="nav-links">
-            <a href="index.html">Home</a>
             <a href="gallery.html">Gallery</a>
-            <a href="portfolio.html" class="active">Portfolio</a>
+            <a href="portfolio.html">Portfolio</a>
             <a href="physics.html">Physics</a>
         </div>
 
@@ -413,6 +386,8 @@
     </section>
 
     <footer>
+        <div class="signature">Manish Kanda</div>
+        
         <div class="footer-socials">
             <a href="mailto:Manishkanda71@gmail.com" title="Email">
                 <i class="fa-regular fa-envelope"></i>
@@ -441,11 +416,19 @@
         navMenu.classList.toggle('active');
         if (navMenu.classList.contains('active')) {
             icon.classList.remove('fa-bars');
-            icon.classList.add('fa-xmark');
+            icon.classList.add('fa-xmark'); 
         } else {
             icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
+            icon.classList.add('fa-bars'); 
         }
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        });
     });
 </script>
 
