@@ -91,28 +91,34 @@
     transition: transform 0.3s ease;
 }
 
-figure:hover {
-    transform: rotate(0deg);
+figure {
+    float: right;
+    width: 45%;
+    margin: 10px 0 20px 30px; /* Adds space around the floated image */
 }
 
 .main-image {
     width: 100%;
     height: auto;
+    border-radius: 4px;
     display: block;
-    filter: grayscale(100%); 
-    transition: filter 0.4s ease;
+    filter: grayscale(100%) contrast(1.2); 
+    transition: filter 0.3s ease;
 }
 
 .main-image:hover {
-    filter: grayscale(20%); 
+    filter: grayscale(0%) contrast(1);
 }
 
 figcaption {
-    font-family: 'Sacramento', cursive;
-    font-size: 1.6rem;
-    color: var(--text-main);
-    margin-top: 15px;
-    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 10px;
+    text-align: right;
+    font-style: italic;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
 }
 
         /* --- Content Styling --- */
@@ -178,11 +184,15 @@ figcaption {
 
             <p>
                 <span class="highlight-reason">Alright, </span> 
-                I’ve uploaded the photos and will upload more. Yes, we’re supposed to click millions of pictures wherever we go. First, let’s take photos with everyone, and then fuck all that — click your own pictures from every angle, at every different place.
+                I’ve uploaded the pictures and will upload more. Yes, we’re supposed to click millions of pictures wherever we go. First, let’s take pictures with everyone, and then fuck all that — click your own pictures from every angle, at every different place.
+            </p>
 
-I truly believe that we’re just too lazy to use Photoshop and change backgrounds, and honestly, it’s a bit difficult to learn it that well. So instead, we’ll spend some cash and go somewhere with a good background for photos, because in the end, all that matters is you — only you.
-
-Just blur the fuckin’ world and show yourself with a slightly blurred background to that blurred world. They’re just waiting for the moment you upload the photo. Their whole life is stuck to those moments. 
+            <p>
+                I truly believe that we’re just too lazy to use Photoshop and change backgrounds, and honestly, it’s a bit difficult to learn it that well. So instead, we’ll spend some cash and go somewhere with a good background for pictures, because in the end, all that matters is you — only you.
+            </p>
+            
+            <p>
+                Just blur the fuckin’ world and show yourself with a slightly blurred background to that blurred world. They’re just waiting for the moment you upload the pictures. Their whole life is stuck to those moments. 
             </p>
             
            
