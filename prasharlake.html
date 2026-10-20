@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prashar Lake | Manish Kanda</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #FDFCF8;
+            --text-main: #2D334A;
+            --text-muted: #7C809B;
+            --primary: #0F4C5C;
+            --secondary: #E36414;
+            --border-color: #EAEAEA;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.8;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- Reading progress bar --- */
+        #progress {
+            position: fixed; top: 0; left: 0; height: 4px; width: 0;
+            background: var(--secondary); z-index: 100;
+            transition: width 0.1s linear;
+        }
+
+        .container { 
+            max-width: 720px;
+            margin: 0 auto; 
+            padding: 20px;
+            width: 100%;
+            flex: 1; 
+        }
+
+        /* --- Navigation --- */
+        nav {
+            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+        
+        .logo { 
+            font-weight: 700; color: var(--primary); text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .back-link {
+            text-decoration: none; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .back-link:hover { color: var(--secondary); transform: translateX(-3px); }
+
+        /* --- Article header --- */
+        .post-header { margin-bottom: 30px; text-align: left; }
+        
+        .post-date {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .post-title {
+            font-size: 3.2rem;
+            color: var(--primary);
+            margin: 0 0 12px 0;
+            line-height: 1.05;
+            font-weight: 700;
+        }
+
+        .post-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* --- Trip stats strip --- */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 30px 0 50px 0;
+            font-family: 'Inter', sans-serif;
+        }
+        .stat {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-top: 3px solid var(--secondary);
+            border-radius: 6px;
+            padding: 14px 10px;
+            text-align: center;
+        }
+        .stat b {
+            display: block;
+            font-size: 1.35rem;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        .stat span {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        /* --- Content Styling --- */
+        .content p { 
+            margin: 0 0 22px 0; 
+            font-size: 1.08rem;
+            line-height: 1.85;
+            color: #333;
+        }
+
+        /* Section headings with a number */
+        .content h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            margin: 64px 0 22px 0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .content h2::before {
+            content: attr(data-n);
+            color: var(--secondary);
+            font-size: 1.6rem;
+            font-weight: 300;
+        }
+        .content h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        /* Drop cap on the first paragraph */
+        .content h2:first-child + p::first-letter {
+            float: left;
+            font-size: 4rem;
+            line-height: 0.85;
+            padding: 6px 12px 0 0;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* Short punchy lines */
+        .content p.beat {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 8px 0 24px 0;
+        }
+
+        /* Pull quotes */
+        blockquote {
+            margin: 40px 0;
+            padding: 6px 0 6px 24px;
+            border-left: 4px solid var(--secondary);
+            font-size: 1.45rem;
+            line-height: 1.5;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--primary);
+        }
+
+        /* Dialogue / quoted messages */
+        .note {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.98rem;
+            background: #fff;
+            border: 1px dashed #D5D2C6;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 0 0 26px 0;
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        /* Scissor countdown */
+        .countdown {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 6px 0 26px 0;
+            font-family: 'Inter', sans-serif;
+        }
+        .countdown span {
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.78rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+        .countdown span:nth-child(n+6) { background: #B9BDCB; }
+
+        /* --- Compact photo cards: image left, caption right --- */
+        figure {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            margin: 36px 0 44px 0;
+            background: #FFFFFF;
+            padding: 14px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+        figure:nth-of-type(even) { flex-direction: row-reverse; }
+
+        .main-image {
+            width: 210px;
+            flex-shrink: 0;
+            height: auto;
+            max-height: 260px;
+            object-fit: cover;
+            border-radius: 4px;
+            display: block;
+            background: #EFEDE6;
+        }
+
+        figcaption {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            text-align: left;
+        }
+        figcaption .fig-label {
+            display: block;
+            font-weight: 600;
+            color: var(--secondary);
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        footer {
+            padding: 40px 0; 
+            text-align: center; 
+            font-size: 0.85rem; 
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif; 
+            border-top: 1px solid var(--border-color); 
+            margin-top: 60px;
+        }
+
+        /* --- Wide photo card: big image on top, caption below --- */
+        figure.wide, figure.wide:nth-of-type(even) {
+            flex-direction: column;
+            gap: 16px;
+            padding: 14px 14px 22px 14px;
+        }
+        figure.wide .main-image {
+            width: 100%;
+            max-height: 420px;
+        }
+        figure.wide figcaption p {
+            font-size: 0.9rem;
+            line-height: 1.75;
+            margin: 0 0 12px 0;
+            color: var(--text-muted);
+        }
+        figure.wide figcaption p:last-child { margin-bottom: 0; }
+
+        .content h2.plain::before { content: none; }
+
+        /* --- Big photo cards: full image, never cropped, caption matches its width --- */
+        figure.big, figure.big:nth-of-type(even) {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 14px;
+            padding: 14px 14px 20px 14px;
+        }
+        figure.big .main-image {
+            width: 100%;
+            height: auto;
+            max-height: none;
+            object-fit: contain;
+        }
+        figure.big figcaption { font-size: 0.92rem; }
+        figure.big.portrait .main-image,
+        figure.big.portrait figcaption {
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Closing photo strip --- */
+        .credits {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin: 8px 0 0 0;
+        }
+        .credit {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 8px 8px 12px 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .credit img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 3px;
+            display: block;
+            background: #EFEDE6;
+        }
+        .credit span {
+            display: block;
+            margin-top: 9px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.74rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+        }
+        @media (max-width: 600px) {
+            .credits { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* --- Mobile --- */
+        @media (max-width: 600px) {
+            .post-title { font-size: 2.5rem; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            figure, figure:nth-of-type(even) { flex-direction: column; }
+            .main-image { width: 100%; max-height: 220px; }
+            blockquote { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="container">
+    <nav>
+        <a href="index.html" class="logo">Manish Kanda</a>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <span class="post-date">oct 18, 2026</span>
+            <h1 class="post-title">Slow-Mo to Prashar</h1>
+        </header>
+
+        <div class="stats">
+            <div class="stat"><b>36 km</b><span>Distance</span></div>
+            <div class="stat"><b>+5,000 ft</b><span>Elevation</span></div>
+            <div class="stat"><b>8 hrs</b><span>On the road</span></div>
+            <div class="stat"><b>9,000 ft</b><span>The top</span></div>
+        </div>
+
+        <div class="content">
+            <h2 data-n="01">The Mail</h2>
+            <p>
+                It started with a mail, so I asked Pradeep to join me. Join me for what? What mail?—Going to Prashar via cycles. I just run. He does too. The last time I was on a cycle was when I was, oh, I don’t even remember how old. So, Prashar Lake via cycle. Campus at 4,000 ft and Prashar at 9,000 ft. An elevation gain of 5,000 ft.
+            </p>
+
+            <figure class="big">
+                <img class="main-image" src="start.jpeg" alt="The group with their cycles just before the ride began">
+                <figcaption>
+                    <span class="fig-label">The Climb</span>
+                    First, we went from South Campus to North Campus in the morning and collected our cycles. This is the first picture, taken just before starting the journey.
+                </figcaption>
+            </figure>
+
+            <p>
+                The mail said, “Anybody who wants to join a cycle ride to Prashar can take a fitness test. A 5 km run. The first eight people will get cycles from the MTB Club, IIT Mandi, and these eight will complete the summit along with two coordinators.”
+            </p>
+
+            <p>
+                Pradeep and I made a deal. We would go only if both of us passed the test. If either of us failed, neither would go.
+            </p>
+            <p>
+                The next evening, we were called to select our cycles. Out of forty people, we were seventh and eighth.
+            </p>
+            <p>
+                Next morning, the journey started.
+            </p>
+            <p class="beat">Shared frustration.</p>
+
+            <h2 data-n="02">Scissors</h2>
+            <p>
+                We didn’t even know how to deal with a small mechanical fault. Eight hours. Distance? Thirty-six kilometres.
+            </p>
+            <p>
+                Three hours before reaching the destination, some cars and jeeps crossed our path. “Oh, Prashar? You know, guys, it gets steeper up there.” Far away. Very far away. Far away? We were already on the steepest stretch, at least according to us.
+            </p>
+            <p>
+                Soon, the final road would appear. But no. It simply wasn’t there. Wait. We had to be silent. We had to keep moving, as slowly as we could, for as long as we could. How much longer? Where was that final kenchii (scissor)?
+            </p>
+
+            <figure class="big portrait">
+                <img class="main-image" src="map.jpeg" alt="Hand-drawn map of elevation against distance from IIT Mandi to Prashar Lake">
+                <figcaption>
+                    <span class="fig-label">The Route</span>
+                    This is a rough map from IIT Mandi to Prashar Lake, with the highlighted points I’ve mentioned in the text.
+                </figcaption>
+            </figure>
+
+            <p>
+                What is a scissor? Just a local term. Scissors. The turn where you ride your cycle up the steepest road, right through the middle of the forest, until you reach the next turn. That turn is called a scissor. And then the steep roads begin again.
+            </p>
+
+            <p>
+                Ten scissors. Nine scissors. Eight scissors. Seven scissors. Six scissors. What then? What was the count?
+            </p>
+
+            <p>
+                “Why aren’t you speaking?” Pradeep asked me. I had asked him the same question just after one of the scissors, maybe. Silence. No suggestions to each other. No complaints. No pranks. No sarcasm. Silence. Forget the scissors. Silence.
+            </p>
+            <p>
+                No… Let’s start counting again. Enough of sitting at the end of every scissor. We’ll stop only after covering two kilometres. Before that, no one stops. That’s it. Final.
+            </p>
+            <p>
+                It worked the first time. And it wasn’t enough. Even a single kilometre made us realise how many m-e-t-e-r-s it had left to offer. We broke the promise. Broken. Physically. Mentally. First time. We sat there. In the middle of the forest. The cycles stood TALL.
+            </p>
+
+            <figure>
+                <img class="main-image" src="prashar-1.jpeg" alt="The dhaba stop on the way to Prashar">
+                <figcaption>
+                    <span class="fig-label">The Dhaba</span>
+                    Four hours before reaching Prashar. We stopped at this dhaba, clicked one picture, followed by eating everything we could. We had borrowed Rohan’s phone, made every payment from it. This is the pic just after the jeeps told us, prashar is far away. We started the journey again.
+                </figcaption>
+            </figure>
+
+            <h2 data-n="03">Cracking the Code</h2>
+            <p>
+                Alright, so the route was Kamand—Katoula—Baagi—Prashar Lake. We were exhausted even before reaching Baagi. So we stopped on a cliff, ate Maggi, and let the breeze work on our sweat. Pradeep couldn’t believe how I had become that cook. Even I was shocked. We had bananas. Then we left.
+            </p>
+            <p>
+                I thought, It's my first time, so obviously, I don’t know the technique. But I’ll find one. And I finally cracked the code. I shouted at Pradeep:
+            </p>
+
+            <blockquote>“Just pedal as slowly as you can. Don’t rush. Just slow. Suppose you’re in live slow-mo.”</blockquote>
+
+            <p>
+                And then we reached Baagi.
+            </p>
+
+            <figure>
+                <img class="main-image" src="prashar-2.png" alt="Pradeep with the speaker in his bag">
+                <figcaption>
+                    <span class="fig-label">The Speaker</span>
+                    First of all, the lower he’s wearing is mine. He stole it and hasn’t returned it till date. It is suggested to carry as little weight as possible while cycling, but this gandu had brought a big speaker in his bag. He had a plan to play that shit for the whole journey. The only relief I could imagine was throwing the speaker off a cliff. Then I stopped and thought about it again. I decided to keep the speaker and throw this gandu off instead.
+                </figcaption>
+            </figure>
+
+            <h2 data-n="04">Group of Two</h2>
+            <p>
+                Other groups were there too. But Pradeep and I had made our own group of two, pacing according to each other. No competition. No catching up with anyone. Just the two of us.
+            </p>
+            <p>
+                Now, after Baagi, the trail would get steeper,’ the coordinator told us. But as you know, I’d already cracked the code. It wouldn’t be a problem. We left for Prashar.
+            </p>
+            <p>
+                The views were scenic. I could sense that the control was mine. I was riding the cycle. I was responsible for whatever it was.
+            </p>
+            <p>
+                We had no idea how the road kept getting steeper and steeper until the code I had cracked failed we had to stop cycling altogether and start walking, pushing our cycles alongside us.
+            </p>
+            <p>
+                Three hours later, we ended up at a dhaba. I ordered what you’d expect me to order: an omelette and paneer paranthas. Pradeep and I sat down and ate as much as we could. Reached the top. Same thing ordered. Twice the quantity.
+            </p>
+
+            <figure>
+                <img class="main-image" src="prashar-3.jpeg" alt="The bench at the top of Prashar">
+                <figcaption>
+                    <span class="fig-label">The Bench</span>
+                    This is the bench. At the top. Last time, we came when there was snowfall. I had a fever then. I removed my shoes and sat on that bench. I don’t think I'll be able to forget that peace ever. I would love to talk about this bench more, but how to talk about peace and silence, how to put that in words, I still don’t know.
+                </figcaption>
+            </figure>
+
+            <h2 data-n="05">The Descent</h2>
+            <p>
+                Let’s go back. We’re at 9,000 ft. At 4:30, we started descending. The temperature dropped too. Cold. Just cold and darkness.
+            </p>
+            <p>
+                Not a single light. We reached the campus. Rooms. It’s not tiring now. Let’s see in the morning.
+            </p>
+            <p>
+                Residues. Longer than we expected.
+            </p>
+
+            <figure class="wide">
+                <img class="main-image" src="prashar-4.png" alt="View of Prashar Lake from the bench">
+                <figcaption>
+                    <span class="fig-label">The View</span>
+                    <p>
+                        This is the view from the bench we were sitting on. Prashar has its own charm and colours. One good thing about Prashar is that every time you visit, it shows you different shades. I have been here three times, so I have seen it brown, completely white, and green.
+                    </p>
+                    <p>
+                        How deep is the lake? No one knows. It is said to be bottomless. No one has been able to measure its depth to this day.
+                    </p>
+                    <p>
+                        According to the old locals, a massive deodar trunk once fell vertically into the lake and disappeared completely, never to resurface. RESURFACING. I have learnt that whatever has been absorbed has to resurface, one way or another. Emotions, for instance, resurface even after years.
+                    </p>
+                    <p>
+                        Why can’t we just be a part of nature? Or maybe just nature itself, just an entity. I have no idea. For instance, why can’t I just disappear? Disappear into thin air, without even knowing that I was ever there. All they would know is that somehow, he, or it, had disappeared. They could only see it, observe it, absorb it. It should never resurface.
+                    </p>
+                    <p>
+                        This way, everyone could just be nature, not separate from it. Even if I disappeared into that bottomless surface, even if I never knew I had disappeared, I would become nature, a part of nature. In the end, I just don’t want to be a separate entity. I just can’t resurface.
+                    </p>
+                </figcaption>
+            </figure>
+
+            <h2 data-n="06">The Top</h2>
+            <p>
+                After the last scissor, there was the final ghaati. We knew it was coming. But talking about it? No. The freezing temperature told us something about the elevation numbers.
+            </p>
+            <p>
+                We were there. We placed the cycles. Destination. The bench, right at the very top. Tops. Highs. Higher than anything else. The sunshine. Like the first warm ray. Silence. Happiness? Don’t know. But we were there.
+            </p>
+
+            <h2 class="plain">Stray Frames</h2>
+            <div class="credits">
+                <div class="credit">
+                    <img src="prashar-1.jpeg" alt="The dhaba stop on the way to Prashar">
+                    <span>The dhaba, four hours out.</span>
+                </div>
+                <div class="credit">
+                    <img src="prashar-2.png" alt="Pradeep with the speaker in his bag">
+                    <span>Pradeep, and the speaker.</span>
+                </div>
+                <div class="credit">
+                    <img src="prashar-3.jpeg" alt="The bench at the top of Prashar">
+                    <span>The bench, at the top.</span>
+                </div>
+                <div class="credit">
+                    <img src="prashar-4.png" alt="View of Prashar Lake from the bench">
+                    <span>The view from the bench.</span>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        © 2026 Manish Kanda.
+    </footer>
+</div>
+
+<script>
+    window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+        document.getElementById('progress').style.width = pct + '%';
+    });
+</script>
+
+</body>
+</html>
